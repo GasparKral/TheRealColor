@@ -16,7 +16,7 @@ export const UserDisplay = () => {
 
         <AnimatePresence>
             <div
-                className="absolute top-3 right-5 w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-800 cursor-pointer"
+                className="absolute top-3 right-5 w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-500 cursor-pointer"
                 onClick={toggle}
             >
                 <img
@@ -51,10 +51,22 @@ export const UserDisplay = () => {
                     className="flex flex-col p-2 absolute top-12 [right:68px] text-white bg-zinc-900 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
                 >
                     <button
-                        className="border-none text-left"
-                    >Export pallette</button>
-                    <Link to="/user">User Info</Link>
-                    <Link to="/about">About</Link>
+                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                    >
+                        Export pallette
+                    </button>
+                    <Link
+                        to="/user"
+                        className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors "
+                    >
+                        User Info
+                    </Link>
+                    <Link
+                        to="/about"
+                        className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                    >
+                        About
+                    </Link>
                     {isLoggedIn ?
                         <button
                             key={"logout"}
@@ -66,12 +78,12 @@ export const UserDisplay = () => {
                         <div className="flex gap-2 pt-2 border-t border-zinc-500">
                             <button
                                 key={"login"}
-                                className="text-green-500 bg-green-500 bg-opacity-30 rounded-md p-0.5 w-fit px-2 "
+                                className="text-green-500 bg-green-500 bg-opacity-30 rounded-md p-0.5 w-fit px-2 hover:text-green-100 hover:bg-opacity-70 transition-colors"
                             >Login
                             </button>
                             <button
                                 key={"register"}
-                                className="text-blue-500 bg-blue-500 bg-opacity-30 rounded-md w-fit px-2 "
+                                className="text-blue-500 bg-blue-500 bg-opacity-30 rounded-md w-fit px-2 hover:text-blue-100 hover:bg-opacity-70 transition-colors"
                             >Register
                             </button>
                         </div>}
