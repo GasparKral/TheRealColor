@@ -31,6 +31,7 @@ export const PalletteMenu = ({ colorName }) => {
                             type="color" />
                     </label>
                     <button
+                        type="button"
                         className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs"
                     >
                         New Color

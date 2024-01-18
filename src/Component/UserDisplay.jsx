@@ -76,16 +76,20 @@ export const UserDisplay = () => {
                             Logout</button>
                         :
                         <div className="flex gap-2 pt-2 border-t border-zinc-500">
-                            <button
+                            <Link
+                                className="text-green-500 bg-green-500 bg-opacity-30 rounded-md p-0.5 w-fit px-2 hover:text-green-100 hover:bg-opacity-70 transition-colors flex items-center"
                                 key={"login"}
-                                className="text-green-500 bg-green-500 bg-opacity-30 rounded-md p-0.5 w-fit px-2 hover:text-green-100 hover:bg-opacity-70 transition-colors"
-                            >Login
-                            </button>
-                            <button
+                                to="/login"
+                            >
+                                Login
+                            </Link>
+                            <Link
                                 key={"register"}
-                                className="text-blue-500 bg-blue-500 bg-opacity-30 rounded-md w-fit px-2 hover:text-blue-100 hover:bg-opacity-70 transition-colors"
-                            >Register
-                            </button>
+                                to={"/login"}
+                                className="text-blue-500 bg-blue-500 bg-opacity-30 rounded-md w-fit px-2 hover:text-blue-100 hover:bg-opacity-70 transition-colors flex items-center"
+                            >
+                                Register
+                            </Link>
                         </div>}
                 </motion.menu>
             }
