@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useOnClickOutside } from 'usehooks-ts'
+
 export const UserDisplay = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const closeRef = useRef(null)
+
+    useOnClickOutside(closeRef, () => setIsOpen(false))
 
     const toggle = () => setIsOpen(!isOpen)
 
@@ -30,6 +35,7 @@ export const UserDisplay = () => {
 
                 <motion.menu
                     key={"menu"}
+                    ref={closeRef}
                     initial={{ opacity: 0 }}
                     animate={{
                         opacity: 1,
@@ -48,6 +54,7 @@ export const UserDisplay = () => {
                             easings: "easeOut"
                         }
                     }}
+
                     className="flex flex-col p-2 absolute top-12 [right:68px] text-white bg-zinc-900 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
                 >
                     <button
