@@ -29,7 +29,7 @@ export const FormChangeContext = createContext()
 
 export const FormChangeProvider = ({ children }) => {
 
-    const initialStatesF = { hue: 18, saturation: 7, lightness: 7, numberOfColors: 7 }
+    const initialStatesF = { hue: 9, saturation: 5, lightness: 5, numberOfColors: 7 }
     const [state, dispatch] = useReducer(ReducerControls, initialStatesF)
 
     const changeHue = hue => dispatch({ type: "CHANGE_HUE", payload: { hue } })

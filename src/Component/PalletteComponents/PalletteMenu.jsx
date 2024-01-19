@@ -22,7 +22,7 @@ export const PalletteMenu = ({ colorName }) => {
                         className="absolute -top-3 left-20"
                     >{stateF.numberOfColors}</label>
                     <input
-                        defaultValue={7}
+                        defaultValue={5}
                         min={0}
                         max={10}
                         step={1}
@@ -57,9 +57,9 @@ export const PalletteMenu = ({ colorName }) => {
                 className="flex flex-row columns-3 gap-3 w-full justify-around border-2 border-zinc-500 p-2 rounded-lg"
 
             >
-                <RangeDisplay name={"Saturation "} max={10} value={stateF.saturation} update={changeSaturation} />
-                <RangeDisplay name={"Lightness "} max={10} value={stateF.lightness} update={changeLightness} />
-                <RangeDisplay name={"Hue "} max={36} value={stateF.hue} update={changeHue} />
+                <RangeDisplay name={"Saturation "} max={10} min={-10} value={stateF.saturation} update={changeSaturation} />
+                <RangeDisplay name={"Lightness "} max={10} min={-10} value={stateF.lightness} update={changeLightness} />
+                <RangeDisplay name={"Hue "} max={18} min={-18} value={stateF.hue} update={changeHue} />
             </fieldset>
         </form>
     )

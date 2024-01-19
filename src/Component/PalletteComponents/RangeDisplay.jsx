@@ -1,5 +1,5 @@
 
-export const RangeDisplay = ({ name, value, max, update }) => {
+export const RangeDisplay = ({ name, value, max, min, update }) => {
 
     return (
         <div
@@ -12,7 +12,7 @@ export const RangeDisplay = ({ name, value, max, update }) => {
             <input
                 className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                 type="range"
-                min={0}
+                min={min}
                 max={max}
                 defaultValue={value}
                 name={name}
