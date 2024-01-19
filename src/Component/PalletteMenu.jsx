@@ -1,10 +1,11 @@
 import { RangeDisplay } from "./RangeDisplay"
 import { useContext } from "react"
-import { ReducerContext } from "../hooks/Context"
+import { ReducerContext, FormChangeContext } from "../hooks/Context"
 
 export const PalletteMenu = ({ colorName }) => {
 
-    const { state, changeHue, changeSaturation, changeLightness, updatePaletteNumber, newColor, changeColor } = useContext(ReducerContext)
+    const { state: stateP, newColor, changeColor } = useContext(ReducerContext)
+    const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
     const handleClick = (e) => {
         e.preventDefault()
         newColor()
@@ -23,13 +24,13 @@ export const PalletteMenu = ({ colorName }) => {
                     <label>0</label>
                     <label
                         className="absolute -top-3 left-20"
-                    >{state.numberOfColors}</label>
+                    >{stateF.numberOfColors}</label>
                     <input
-                        defaultValue={state.numberOfColors}
+                        defaultValue={7}
                         min={0}
                         max={10}
                         step={1}
-                        onChange={e => (updatePaletteNumber(e.target.value))}
+                        onChange={e => changeNumberOfColors(e.target.value)}
                         type="range"
                         className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     />
@@ -43,7 +44,7 @@ export const PalletteMenu = ({ colorName }) => {
                         <input
                             className="mb-2"
                             type="color"
-                            value={state.color}
+                            defaultValue={stateP.color}
                             onChange={e => changeColor(e.target.value)}
                         />
                     </label>
@@ -60,9 +61,9 @@ export const PalletteMenu = ({ colorName }) => {
                 className="flex flex-row columns-3 gap-3 w-full justify-around border-2 border-zinc-500 p-2 rounded-lg"
 
             >
-                <RangeDisplay name={"Saturation "} max={10} value={state.saturation} update={changeSaturation} />
-                <RangeDisplay name={"Lightness "} max={10} value={state.lightness} update={changeLightness} />
-                <RangeDisplay name={"Hue "} max={36} value={state.hue} update={changeHue} />
+                <RangeDisplay name={"Saturation "} max={10} value={stateF.saturation} update={changeSaturation} />
+                <RangeDisplay name={"Lightness "} max={10} value={stateF.lightness} update={changeLightness} />
+                <RangeDisplay name={"Hue "} max={36} value={stateF.hue} update={changeHue} />
             </fieldset>
         </form>
     )
