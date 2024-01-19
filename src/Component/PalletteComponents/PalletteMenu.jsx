@@ -1,13 +1,11 @@
 import { RangeDisplay } from "./RangeDisplay"
 import { useContext } from "react"
-import { ReducerContext, FormChangeContext } from "../hooks/Context"
+import { ReducerContext, FormChangeContext } from "../../hooks/Context"
 
 export const PalletteMenu = ({ colorName }) => {
 
     const { state: stateP, newColor, changeColor } = useContext(ReducerContext)
     const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
-
-
 
     return (
         <form

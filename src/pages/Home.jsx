@@ -1,4 +1,4 @@
-import { PalletteBox } from "../Component/PalletteBox"
+import { PalletteBox } from "../Component/PalletteComponents/PalletteBox"
 const Home = () => {
 
     return (
