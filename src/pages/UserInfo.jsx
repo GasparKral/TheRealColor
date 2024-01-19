@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { MenuListItem } from "../Component/MenuListItem"
 import { useState, useRef, useEffect } from "react"
-import { motion, useAnimate, stagger } from "framer-motion"
-import { AnimatePresence } from 'framer-motion'
+import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion"
+
 const UserInfo = () => {
 
     const svgRef = useRef()
@@ -85,7 +85,7 @@ const UserInfo = () => {
                     exit={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, transition: { duration: 0.7 } }}
                 >
-                    
+
                 </motion.section>
             </main>
         </AnimatePresence>
