@@ -1,6 +1,7 @@
 import { RangeDisplay } from "./RangeDisplay"
 import { useContext } from "react"
 import { ReducerContext, FormChangeContext } from "../../hooks/Context"
+import { motion } from "framer-motion"
 
 export const PalletteMenu = ({ colorName }) => {
 
@@ -8,8 +9,9 @@ export const PalletteMenu = ({ colorName }) => {
     const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
 
     return (
-        <form
-            className="w-full h-fit flex flex-col items-center p-4 align-middle justify-center gap-2"
+        <motion.form
+            layout
+            className="w-full h-fit flex flex-col items-center  align-middle justify-center gap-2"
         >
             <fieldset
                 className="flex row gap-3 w-full justify-around border-2 border-zinc-500 pt-4 pb-2 px-2 rounded-lg"
@@ -19,7 +21,7 @@ export const PalletteMenu = ({ colorName }) => {
                 >
                     <label>0</label>
                     <label
-                        className="absolute -top-3 left-20"
+                        className="absolute -top-3 left-20 select-none"
                     >{stateF.numberOfColors}</label>
                     <input
                         defaultValue={5}
@@ -30,7 +32,9 @@ export const PalletteMenu = ({ colorName }) => {
                         type="range"
                         className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     />
-                    <label>10</label>
+                    <label
+                        className="select-none"
+                    >10</label>
                 </div>
                 <div
                     className="flex justify-between items-centerrelative w-1/4"
@@ -61,7 +65,7 @@ export const PalletteMenu = ({ colorName }) => {
                 <RangeDisplay name={"Lightness "} max={10} min={-10} value={stateF.lightness} update={changeLightness} />
                 <RangeDisplay name={"Hue "} max={18} min={-18} value={stateF.hue} update={changeHue} />
             </fieldset>
-        </form>
+        </motion.form>
     )
 
 }
