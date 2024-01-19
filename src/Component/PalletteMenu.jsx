@@ -6,10 +6,8 @@ export const PalletteMenu = ({ colorName }) => {
 
     const { state: stateP, newColor, changeColor } = useContext(ReducerContext)
     const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
-    const handleClick = (e) => {
-        e.preventDefault()
-        newColor()
-    }
+
+
 
     return (
         <form
@@ -44,14 +42,14 @@ export const PalletteMenu = ({ colorName }) => {
                         <input
                             className="mb-2"
                             type="color"
-                            defaultValue={stateP.color}
+                            value={stateP.color}
                             onChange={e => changeColor(e.target.value)}
                         />
                     </label>
                     <button
                         type="button"
-                        onClick={handleClick}
-                        className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs"
+                        onClick={() => newColor()}
+                        className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs cursor-pointer"
                     >
                         New Color
                     </button>
