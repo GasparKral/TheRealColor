@@ -2,6 +2,7 @@ import { PalletteDisplay } from "./PalletteDisplay"
 import { PalletteMenu } from "./PalletteMenu"
 import { motion, AnimatePresence } from "framer-motion"
 
+
 export const PalletteBox = () => {
 
     return (

@@ -5,7 +5,7 @@ const Home = () => {
         <main
             className="bg-zinc-900 h-screen w-screen flex items-center justify-center text-white"
         >
-            <PalletteBox></PalletteBox>
+            <PalletteBox />
         </main>
     )
 }

@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-
 import './index.css'
+
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ReducerProvider } from './hooks/Context.jsx'
 
 const router = createBrowserRouter([

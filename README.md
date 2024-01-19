@@ -31,3 +31,14 @@ La aplicación consta de los siguientes componentes:
 * Opción para borrar la cuenta o modificar datos específicos de la cuenta.
 ### Pestaña "About"
 Explicación detallada de la funcionalidad y propósito de la página web.
+
+## Metodologías que se implementan
+
+* UseContex
+* UseReducer
+* Enrutado dinámico
+* Feching de datos a API externa
+* Uso de local storage
+* Renderizado condinal
+* Manejo de formularios controlado
+* Gestión de Usuarios
