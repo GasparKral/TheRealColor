@@ -1,5 +1,5 @@
 
-export const RangeDisplay = ({ name, value, max }) => {
+export const RangeDisplay = ({ name, value, max, update }) => {
 
     return (
         <div
@@ -17,6 +17,7 @@ export const RangeDisplay = ({ name, value, max }) => {
                 defaultValue={value}
                 name={name}
                 step={1}
+                onChange={e => update(e.target.value)}
             />
 
             <label >{max}</label>
