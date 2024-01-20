@@ -17,6 +17,12 @@ export const ReducerColor = (state, action) => {
                 color: generateRandomColor()
             }
         }
+        case 'SET_UP:COLOR': {
+            const { color } = actionPayload
+            return {
+                color: color
+            }
+        }
 
     }
 }

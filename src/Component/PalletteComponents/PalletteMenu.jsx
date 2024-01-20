@@ -19,13 +19,13 @@ export const PalletteMenu = ({ colorName }) => {
                 <div
                     className="flex  items-center gap-3 relative w-1/2"
                 >
-                    <label>0</label>
+                    <label>1</label>
                     <label
                         className="absolute -top-3 left-20 select-none"
                     >{stateF.numberOfColors}</label>
                     <input
                         defaultValue={5}
-                        min={0}
+                        min={1}
                         max={10}
                         step={1}
                         onChange={e => changeNumberOfColors(e.target.value)}
