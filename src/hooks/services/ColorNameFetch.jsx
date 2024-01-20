@@ -1,15 +1,9 @@
-import { useEffect } from "react";
 import { ColorApi } from "./fetchConst";
-import colorString from 'color-string';
 
-export const ColorNameFetch = () => {
+export const ColorNameFetch = async (color) => {
 
-    useEffect(() => {
-        fetch((ColorApi + colorString.to.hsl("#ff0000").replaceAll(' ', '')))
-            .then(res => res.json())
-            .then(data => {
-                const name = data.name.value;
-                return name
-            })
-    }, [])
+    const res = await fetch((ColorApi + 'hex=' + color.replace("#", "")));
+    const data = await res.json();
+    return data.name.value;
+
 }

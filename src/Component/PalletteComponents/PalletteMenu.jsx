@@ -1,12 +1,21 @@
 import { RangeDisplay } from "./RangeDisplay"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ReducerContext, FormChangeContext } from "../../hooks/Context"
 import { motion } from "framer-motion"
+import { ColorNameFetch } from "../../hooks/services/ColorNameFetch"
+import { useDebounce } from "usehooks-ts"
 
-export const PalletteMenu = ({ colorName }) => {
+export const PalletteMenu = () => {
 
     const { state: stateP, newColor, changeColor } = useContext(ReducerContext)
     const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
+    const debouncedColor = useDebounce(stateP.color, 250)
+    const [colorName, setColorName] = useState("")
+
+    useEffect(() => {
+        ColorNameFetch(debouncedColor)
+            .then(res => setColorName(res))
+    }, [debouncedColor])
 
     return (
         <motion.form
@@ -40,7 +49,7 @@ export const PalletteMenu = ({ colorName }) => {
                     className="flex justify-between items-centerrelative w-1/4"
                 >
                     <label>
-                        {colorName ? colorName : "Color: "}
+                        {colorName + ": "}
                         <input
                             className="mb-2"
                             type="color"

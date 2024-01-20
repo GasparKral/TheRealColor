@@ -1,2 +1,2 @@
 
-export const ColorApi = "";
+export const ColorApi = "https://www.thecolorapi.com/id?";
