@@ -62,17 +62,22 @@ export const UserDisplay = () => {
                     >
                         Export pallette
                     </button>
+                    <button
+                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                    >
+                        Import pallette
+                    </button>
+                    <button
+                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+
+                    >
+                        Save Pallette
+                    </button>
                     <Link
                         to="/user"
                         className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors "
                     >
                         User Info
-                    </Link>
-                    <Link
-                        to="/about"
-                        className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
-                    >
-                        About
                     </Link>
                     {isLoggedIn ?
                         <button

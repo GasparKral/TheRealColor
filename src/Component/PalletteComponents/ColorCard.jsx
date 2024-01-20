@@ -1,14 +1,17 @@
 import { motion } from "framer-motion"
 import { useState, useContext } from "react"
 import { ReducerContext, TaskContext } from "../../hooks/Context"
+import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
 import Color from "color"
 export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
 
-    const { state: colorState, setUpColor } = useContext(ReducerContext)
+    const { setUpColor } = useContext(ReducerContext)
     const { setTask } = useContext(TaskContext)
 
     const getColor = Color(baseColor).hsl()
+
     const [isOpen, setIsOpen] = useState(false)
+
     const formVariants = {
         open: {
             scale: 1,
@@ -25,6 +28,10 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
             },
         },
     }
+
+    let lightnessValue = checkMinMaxValue(Math.round(getColor.color[2] + lightness), 100, Math.round(getColor.color[2] + lightness))
+    let saturationValue = checkMinMaxValue(Math.round(getColor.color[1] + saturation), 100, Math.round(getColor.color[1] + saturation))
+    let hueValue = checkMinMaxValue(Math.round(getColor.color[0] + hue), 360, Math.round(getColor.color[0] + hue))
 
     const closeForm = (e) => {
         e.preventDefault()
@@ -50,7 +57,6 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
     }
 
     const bgColor = `hsl(${(getColor.color[0] + hue)}, ${(getColor.color[1] + saturation)}%, ${(getColor.color[2] + lightness)}%)`
-
     return (
         <motion.article
             layout
@@ -72,7 +78,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                 <div
                     className="flex flex-col gap-1 text-end w-full h-[90%] rounded-lg"
                 >
-                    <label htmlFor="saturation"
+                    <label htmlFor="lightness"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms"
@@ -80,7 +86,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                     >
                         Lightness:
                         <input
-                            value={Math.round(Color(colorState.color).hsl().color[1] + lightness)}
+                            value={lightnessValue}
                             readOnly
                             name="saturation"
                             type="number"
@@ -88,10 +94,10 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                                 color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                                 transition: "color easeIn 300ms"
                             }}
-                            className="w-[20%] rounded-full  text-neutral-50 bg-transparent text-end"
+                            className="w-[25%] rounded-full  text-neutral-50 bg-transparent text-end"
                         />
                     </label>
-                    <label htmlFor="lightness"
+                    <label htmlFor="saturation"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms"
@@ -99,7 +105,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                     >
                         Saturation:
                         <input
-                            value={Math.round(Color(colorState.color).hsl().color[2] + saturation)}
+                            value={saturationValue}
                             readOnly
                             name="lightness"
                             type="number"
@@ -107,7 +113,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                                 color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                                 transition: "color easeIn 300ms"
                             }}
-                            className="w-[20%] rounded-full  text-neutral-50 bg-transparent text-end"
+                            className="w-[25%] rounded-full  text-neutral-50 bg-transparent text-end"
                         />
                     </label>
                     <label htmlFor="hue"
@@ -118,7 +124,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                     >
                         Hue:
                         <input
-                            value={Math.round(Color(colorState.color).hsl().color[0] + hue)}
+                            value={hueValue}
                             readOnly
                             name="hue"
                             type="number"
