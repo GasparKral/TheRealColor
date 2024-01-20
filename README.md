@@ -29,8 +29,6 @@ La aplicación consta de los siguientes componentes:
 * Gestión del plan de usuario.
 * Acceso a paletas previamente creadas, con opción de exportarlas tanto para CSS normal como para TailwindCSS.
 * Opción para borrar la cuenta o modificar datos específicos de la cuenta.
-### Pestaña "About"
-Explicación detallada de la funcionalidad y propósito de la página web.
 
 ## Metodologías que se implementan
 

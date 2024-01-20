@@ -2,6 +2,10 @@ import { motion } from "framer-motion"
 import { useState, useContext } from "react"
 import { ReducerContext, TaskContext } from "../../hooks/Context"
 import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
+import { ClipBoardCopy } from "../../assets/ClipBoardCopy"
+import { Close } from "../../assets/Close"
+import { SetUp } from "../../assets/SetUp"
+
 import Color from "color"
 export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
 
@@ -141,7 +145,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                 >
                     <button
                         onClick={closeForm}
-                        className="w-fit px-2 rounded-full hover:bg-neutral-50 hover:text-zinc-900 transition-colors duration-300 border-2 border-neutral-50 text-neutral-50"
+                        className="w-fit px-2 rounded-fulltransition-colors duration-300  text-neutral-50"
                         type="button"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
@@ -149,7 +153,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                             transition: "color easeIn 300ms, border-color easeIn 300ms"
                         }}
                     >
-                        close
+                        {Close()}
                     </button>
                     <button
                         style={{
@@ -157,10 +161,10 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                             borderColor: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms, border-color easeIn 300ms"
                         }}
-                        className="w-fit  rounded-full hover:bg-neutral-50 hover:text-zinc-900 transition-colors duration-300 border-2 border-neutral-50 text-neutral-50 px-2"
+                        className="w-fit px-2 rounded-full transition-colors duration-300 text-neutral-50"
                         onClick={(e) => updateColor(bgColor, e)}
                     >
-                        set up
+                        {SetUp()}
                     </button>
                     <button
                         style={{
@@ -168,10 +172,10 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                             borderColor: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms, border-color easeIn 300ms"
                         }}
-                        className="w-fit px-2 rounded-full hover:bg-neutral-50 hover:text-zinc-900 transition-colors duration-300 border-2 border-neutral-50 text-neutral-50"
+                        className="w-fit px-2 rounded-full transition-colors duration-300 text-neutral-50"
                         onClick={(e) => copyColor(e)}
                     >
-                        copy
+                        {ClipBoardCopy()}
                     </button>
                 </div>
             </motion.form>

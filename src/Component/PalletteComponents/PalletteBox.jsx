@@ -8,7 +8,7 @@ export const PalletteBox = () => {
         <AnimatePresence>
             <motion.section
                 layout
-                className="w-10/12 h-fit p-4 flex flex-col justify-center items-center gap-3 align-middle rounded-lg "
+                className="w-[80%] h-fit p-4 flex flex-col justify-center items-center gap-3 align-middle rounded-lg "
             >
                 <PalletteMenu />
                 <PalletteDisplay />

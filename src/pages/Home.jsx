@@ -1,5 +1,5 @@
 import { PalletteBox } from "../Component/PalletteComponents/PalletteBox"
-import { Task } from "../Component/Task"
+import { Task } from "../Component/Toast"
 import { TaskContext } from "../hooks/Context"
 import { useContext } from "react"
 const Home = () => {

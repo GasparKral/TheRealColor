@@ -64,11 +64,6 @@ export const UserDisplay = () => {
                     </button>
                     <button
                         className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
-                    >
-                        Import pallette
-                    </button>
-                    <button
-                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
 
                     >
                         Save Pallette
