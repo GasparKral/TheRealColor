@@ -7,7 +7,7 @@ import { useDebounce } from "usehooks-ts"
 
 export const PalletteMenu = () => {
 
-    const { state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor} = useContext(PalletteContext)
+    const { state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor } = useContext(PalletteContext)
     const debouncedColor = useDebounce(state.color, 250)
     const [colorName, setColorName] = useState("")
 
@@ -27,20 +27,26 @@ export const PalletteMenu = () => {
                 <div
                     className="flex  items-center gap-3 relative w-1/2"
                 >
-                    <label>1</label>
                     <label
+                        htmlFor="numberOfColors"
+                    >1</label>
+                    <label
+                        htmlFor="numberOfColors"
                         className="absolute -top-3 left-20 select-none"
                     >{state.numberOfColors}</label>
                     <input
+                        name="numberOfColors"
                         defaultValue={5}
                         min={1}
                         max={10}
                         step={1}
+                        aria-label="number of colors range picker"
                         onChange={e => changeNumberOfColors(e.target.value)}
                         type="range"
                         className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     />
                     <label
+                        htmlFor="numberOfColors"
                         className="select-none"
                     >10</label>
                 </div>
@@ -50,6 +56,7 @@ export const PalletteMenu = () => {
                     <label>
                         {colorName + ": "}
                         <input
+                            name="color"
                             className="mb-2"
                             type="color"
                             value={state.color}

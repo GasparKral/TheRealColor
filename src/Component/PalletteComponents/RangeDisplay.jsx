@@ -6,9 +6,11 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
             className="flex items-center justify-center gap-2 w-1/3 px-2"
         >
             <label
+                htmlFor={name}
                 className="w-fit text-sm font-medium text-gray-900 dark:text-white select-none"
             >{name}:</label>
             <label
+                htmlFor={name}
                 className="select-none"
             >{value}</label>
             <input
@@ -19,6 +21,7 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
                 defaultValue={value}
                 name={name}
                 step={1}
+                aria-label="Default"
                 onChange={e => update(e.target.value)}
             />
 

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { useState, useContext } from "react"
-import { PalletteContext, TaskContext } from "../../hooks/Context"
+import { PalletteContext, GeneralContext } from "../../hooks/Context"
 import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
 import { ClipBoardCopy } from "../../assets/ClipBoardCopy"
 import { Close } from "../../assets/Close"
@@ -10,7 +10,7 @@ import Color from "color"
 export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
 
     const { setUpColor } = useContext(PalletteContext)
-    const { setTask } = useContext(TaskContext)
+    const { setTask } = useContext(GeneralContext)
 
     const getColor = Color(baseColor).hsl()
 
@@ -147,6 +147,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                         onClick={closeForm}
                         className="w-fit px-2 rounded-fulltransition-colors duration-300  text-neutral-50"
                         type="button"
+                        aria-label="Close more Information"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             borderColor: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
@@ -156,6 +157,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                         {Close()}
                     </button>
                     <button
+                        aria-label="Set up the current color of the card"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             borderColor: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
@@ -167,6 +169,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
                         {SetUp()}
                     </button>
                     <button
+                        aria-label="Copy to clipboard the current color of the card"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             borderColor: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
