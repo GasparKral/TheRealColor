@@ -13,7 +13,6 @@ Una Aplicación Web para generar paletas de colores y exportarlas utilizando el 
 * **Framer-motion**: Librería de JavaScript para gestionar animaciones.
 * **Color**: Pequeña librería de JavaScript que permite la conversión de tipos de colores entre HSL, RGB, HEX y tagName.
 * **TailwindCSS**: Librería externa que crea clases utilitarias para la gestión directa de los estilos de los componentes.
-* **UseDebounce**: Librería que realiza debounce a un estado de React, utilizado para la petición a la API de Colors.
 * **UseHooks**: Librería de hooks personalizados listos para usar.
 ## Estructura de la Web
 La aplicación consta de los siguientes componentes:
