@@ -21,7 +21,7 @@ export const UserDisplay = () => {
 
         <AnimatePresence>
             <div
-                className="absolute top-3 right-5 w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-500 cursor-pointer"
+                className="fixed top-3 right-5 w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-500 cursor-pointer"
                 onClick={toggle}
             >
                 <img
@@ -55,7 +55,7 @@ export const UserDisplay = () => {
                         }
                     }}
 
-                    className="flex flex-col p-2 absolute top-12 [right:68px] text-white bg-neutral-900 z-10 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
+                    className="flex flex-col p-2 fixed top-12 [right:68px] text-white bg-neutral-900 z-10 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
                 >
                     <button
                         className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"

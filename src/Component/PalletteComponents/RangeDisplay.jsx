@@ -22,7 +22,7 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
                 name={name}
                 step={1}
                 aria-label="Default"
-                onChange={e => update(e.target.value)}
+                onChange={e => update(parseInt(e.target.value))}
             />
 
             <label

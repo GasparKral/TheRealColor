@@ -41,7 +41,7 @@ export const PalletteMenu = () => {
                         max={10}
                         step={1}
                         aria-label="number of colors range picker"
-                        onChange={e => changeNumberOfColors(e.target.value)}
+                        onChange={e => changeNumberOfColors(parseInt(e.target.value))}
                         type="range"
                         className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     />
@@ -60,7 +60,7 @@ export const PalletteMenu = () => {
                             className="mb-2"
                             type="color"
                             value={state.color}
-                            onChange={e => changeColor(e.target.value)}
+                            onChange={e => changeColor(parseInt(e.target.value))}
                         />
                     </label>
                     <button

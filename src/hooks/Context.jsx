@@ -1,13 +1,11 @@
 import { ReducerPallette } from "./ReducerPallette";
 import { useReducer, createContext, useState } from "react";
 import { generateRandomColor } from "../hooks/logic/generateRandomColor"
-
+import { useEffect } from "react";
 export const PalletteContext = createContext();
 
-export const PalletteProvider = ({ children }) => {
+export const PalletteProvider = ({ children, initialStates, palletteIndex }) => {
 
-    const randomColor = generateRandomColor()
-    const initialStates = { color: randomColor, hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
     const [state, dispatch] = useReducer(ReducerPallette, initialStates)
 
     const newColor = color => dispatch({ type: "GENERATE_COLOR", payload: { color } })
@@ -17,6 +15,16 @@ export const PalletteProvider = ({ children }) => {
     const changeSaturation = saturation => dispatch({ type: "CHANGE_SATURATION", payload: { saturation } })
     const changeLightness = lightness => dispatch({ type: "CHANGE_LIGHTNESS", payload: { lightness } })
     const changeNumberOfColors = numberOfColors => dispatch({ type: "CHANGE_NUMBER_OF_COLORS", payload: { numberOfColors } })
+
+    useEffect(() => {
+
+        if (state !== initialStates) {
+            const temporalState = JSON.parse(window.localStorage.getItem("palletteObject"));
+            temporalState[palletteIndex] = state;
+            window.localStorage.setItem("palletteObject", JSON.stringify(temporalState))
+        }
+
+    }, [state, palletteIndex, initialStates]);
 
     return (
         <PalletteContext.Provider
@@ -35,18 +43,33 @@ export const PalletteProvider = ({ children }) => {
     )
 }
 
-export const TaskContext = createContext()
+export const GeneralContext = createContext()
 
-export const TaskProvider = ({ children }) => {
+export const GeneralProvider = ({ children }) => {
 
     const [task, setTask] = useState({ isTaskOpen: false, task: '' })
 
+    const randomColor = generateRandomColor()
+    const initialPallette = { color: randomColor, hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
+    const [pallettes, setPallettes] = useState(window.localStorage.getItem("palletteObject") ? JSON.parse(window.localStorage.getItem("palletteObject")) : [initialPallette])
+
+    const newPallette = (pallette) => setPallettes([...pallettes, pallette])
+    const eliminatePallette = (palletteIndex) => setPallettes(pallettes.filter((pallette, index) => index !== palletteIndex))
+
+    useEffect(() => {
+        window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
+    }, [pallettes])
+
     return (
-        <TaskContext.Provider
+        <GeneralContext.Provider
             value={{
                 task,
-                setTask
+                setTask,
+                pallettes,
+                newPallette,
+                eliminatePallette,
+                generateRandomColor
             }}
-        >{children}</TaskContext.Provider>
+        >{children}</GeneralContext.Provider>
     )
 }
