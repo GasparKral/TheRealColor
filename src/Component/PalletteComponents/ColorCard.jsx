@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { useState, useContext } from "react"
-import { ReducerContext, TaskContext } from "../../hooks/Context"
+import { PalletteContext, TaskContext } from "../../hooks/Context"
 import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
 import { ClipBoardCopy } from "../../assets/ClipBoardCopy"
 import { Close } from "../../assets/Close"
@@ -9,7 +9,7 @@ import { SetUp } from "../../assets/SetUp"
 import Color from "color"
 export const ColorCard = ({ hue, saturation, lightness, baseColor }) => {
 
-    const { setUpColor } = useContext(ReducerContext)
+    const { setUpColor } = useContext(PalletteContext)
     const { setTask } = useContext(TaskContext)
 
     const getColor = Color(baseColor).hsl()

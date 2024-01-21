@@ -1,15 +1,14 @@
 import { RangeDisplay } from "./RangeDisplay"
 import { useContext, useEffect, useState } from "react"
-import { ReducerContext, FormChangeContext } from "../../hooks/Context"
+import { PalletteContext } from "../../hooks/Context"
 import { motion } from "framer-motion"
 import { ColorNameFetch } from "../../hooks/services/ColorNameFetch"
 import { useDebounce } from "usehooks-ts"
 
 export const PalletteMenu = () => {
 
-    const { state: stateP, newColor, changeColor } = useContext(ReducerContext)
-    const { state: stateF, changeHue, changeSaturation, changeLightness, changeNumberOfColors } = useContext(FormChangeContext)
-    const debouncedColor = useDebounce(stateP.color, 250)
+    const { state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor} = useContext(PalletteContext)
+    const debouncedColor = useDebounce(state.color, 250)
     const [colorName, setColorName] = useState("")
 
     useEffect(() => {
@@ -31,7 +30,7 @@ export const PalletteMenu = () => {
                     <label>1</label>
                     <label
                         className="absolute -top-3 left-20 select-none"
-                    >{stateF.numberOfColors}</label>
+                    >{state.numberOfColors}</label>
                     <input
                         defaultValue={5}
                         min={1}
@@ -53,7 +52,7 @@ export const PalletteMenu = () => {
                         <input
                             className="mb-2"
                             type="color"
-                            value={stateP.color}
+                            value={state.color}
                             onChange={e => changeColor(e.target.value)}
                         />
                     </label>
@@ -70,9 +69,9 @@ export const PalletteMenu = () => {
                 className="flex flex-row columns-3 gap-3 w-full justify-around border-2 border-zinc-500 p-2 rounded-lg"
 
             >
-                <RangeDisplay name={"Saturation "} max={10} min={-10} value={stateF.saturation} update={changeSaturation} />
-                <RangeDisplay name={"Lightness "} max={10} min={-10} value={stateF.lightness} update={changeLightness} />
-                <RangeDisplay name={"Hue "} max={18} min={-18} value={stateF.hue} update={changeHue} />
+                <RangeDisplay name={"Saturation "} max={10} min={-10} value={state.saturation} update={changeSaturation} />
+                <RangeDisplay name={"Lightness "} max={10} min={-10} value={state.lightness} update={changeLightness} />
+                <RangeDisplay name={"Hue "} max={18} min={-18} value={state.hue} update={changeHue} />
             </fieldset>
         </motion.form>
     )

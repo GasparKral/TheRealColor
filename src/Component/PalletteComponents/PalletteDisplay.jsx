@@ -1,25 +1,24 @@
 import { useContext } from "react"
-import { FormChangeContext, ReducerContext } from "../../hooks/Context"
+import { PalletteContext } from "../../hooks/Context"
 import { ColorCard } from "./ColorCard"
 import { motion } from "framer-motion"
 export const PalletteDisplay = () => {
 
-    const { state: dataState } = useContext(FormChangeContext)
-    const { state: colorState } = useContext(ReducerContext)
+    const { state } = useContext(PalletteContext)
 
     const colorsPalletteConstructor = () => {
 
         const colorsPallette = []
 
-        for (let i = 0; i < dataState.numberOfColors; i++) {
+        for (let i = 0; i < state.numberOfColors; i++) {
 
             colorsPallette.push(
                 < ColorCard
                     key={i}
-                    baseColor={colorState.color}
-                    hue={dataState.hue * i * 2.5 / dataState.numberOfColors}
-                    saturation={dataState.saturation * i * 3 / dataState.numberOfColors}
-                    lightness={dataState.lightness * i * 2.5 / dataState.numberOfColors}
+                    baseColor={state.color}
+                    hue={state.hue * i * 2.5 / state.numberOfColors}
+                    saturation={state.saturation * i * 3 / state.numberOfColors}
+                    lightness={state.lightness * i * 2.5 / state.numberOfColors}
                 >
                 </ColorCard >
             )
@@ -27,8 +26,19 @@ export const PalletteDisplay = () => {
         return colorsPallette
     }
 
+    const variants = {
+        small: {
+            height: "60%"
+        },
+        large: {
+            height: "100%"
+        }
+    }
+
     return (
         <motion.div
+            variants={variants}
+            animate={state.numberOfColors > 5 ? "large" : "small"}
             layout
             className="w-full h-3/5 grid grid-cols-5   gap-2 "
         >
