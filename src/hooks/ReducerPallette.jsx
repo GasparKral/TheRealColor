@@ -25,7 +25,7 @@ export const ReducerPallette = (state, action) => {
                 numberOfColors: state.numberOfColors
             }
         }
-        case 'SET_UP:COLOR': {
+        case 'SET_UP_COLOR': {
             const { color } = actionPayload
             return {
                 color: color,

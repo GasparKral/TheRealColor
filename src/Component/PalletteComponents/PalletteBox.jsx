@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import { PalletteProvider } from '../../hooks/Context.jsx'
 
-export const PalletteBox = ({ pallette, index }) => {
+export const PalletteBox = ({ pallette, index, updatePallettes }) => {
 
     return (
         <AnimatePresence>
-            <PalletteProvider initialStates={pallette} palletteIndex={index}>
+            <PalletteProvider initialStates={pallette} palletteIndex={index} updatePallette={updatePallettes}>
                 <motion.section
                     layout
                     className="w-[80%] h-fit p-4 flex flex-col justify-center items-center gap-3 align-middle rounded-lg relative"

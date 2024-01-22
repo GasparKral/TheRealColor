@@ -60,7 +60,7 @@ export const PalletteMenu = () => {
                             className="mb-2"
                             type="color"
                             value={state.color}
-                            onChange={e => changeColor(parseInt(e.target.value))}
+                            onChange={e => changeColor(e.target.value)}
                         />
                     </label>
                     <button
