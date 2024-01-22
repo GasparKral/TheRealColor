@@ -51,8 +51,7 @@ export const GeneralProvider = ({ children }) => {
 
     const [task, setTask] = useState({ isTaskOpen: false, task: '' })
 
-    const randomColor = generateRandomColor()
-    const initialPallette = { color: randomColor, hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
+    const initialPallette = { color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
     const [pallettes, setPallettes] = useState(window.localStorage.getItem("palletteObject") ? JSON.parse(window.localStorage.getItem("palletteObject")) : [initialPallette])
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
@@ -68,6 +67,7 @@ export const GeneralProvider = ({ children }) => {
                 newPallette,
                 eliminatePallette,
                 setPallettes,
+                generateRandomColor,
                 initialPallette
             }}
         >{children}</GeneralContext.Provider>

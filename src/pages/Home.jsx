@@ -6,7 +6,7 @@ import { AddNewPallette } from "../Component/PalletteComponents/AddNewPallette"
 
 const Home = () => {
 
-    const { task, pallettes, newPallette, initialPallette, setPallettes } = useContext(GeneralContext)
+    const { task, pallettes, newPallette, setPallettes, generateRandomColor } = useContext(GeneralContext)
 
     const handleClick = () => {
         window.localStorage.clear()
@@ -33,7 +33,7 @@ const Home = () => {
             </Task>}
 
             {pallettes.length < 5 &&
-                <AddNewPallette updateNumber={() => newPallette(initialPallette)} />}
+                <AddNewPallette updateNumber={() => newPallette({ color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 })} />}
         </main>
     )
 }
