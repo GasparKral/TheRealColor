@@ -57,12 +57,7 @@ export const GeneralProvider = ({ children }) => {
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
     const eliminatePallette = (palletteIndex) => setPallettes(pallettes.filter((pallette, index) => index !== palletteIndex))
-
-    useEffect(() => {
-        window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
-    }, [pallettes])
-
-    console.log("estado pallettes", pallettes);
+    window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
 
     return (
         <GeneralContext.Provider
