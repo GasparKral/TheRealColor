@@ -1,10 +1,6 @@
-import { useContext } from "react"
-import { PalletteContext } from "../../hooks/Context"
 import { ColorCard } from "./ColorCard"
 import { motion } from "framer-motion"
-export const PalletteDisplay = () => {
-
-    const { state } = useContext(PalletteContext)
+export const PalletteDisplay = ({setUpColor, state}) => {
 
     const colorsPalletteConstructor = () => {
 
@@ -19,6 +15,7 @@ export const PalletteDisplay = () => {
                     hue={state.hue * i * 2.5 / state.numberOfColors}
                     saturation={state.saturation * i * 3 / state.numberOfColors}
                     lightness={state.lightness * i * 2.5 / state.numberOfColors}
+                    setUpColor={setUpColor}
                 >
                 </ColorCard >
             )

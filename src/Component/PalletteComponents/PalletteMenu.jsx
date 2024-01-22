@@ -1,13 +1,13 @@
 import { RangeDisplay } from "./RangeDisplay"
-import { useContext, useEffect, useState } from "react"
-import { PalletteContext } from "../../hooks/Context"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ColorNameFetch } from "../../hooks/services/ColorNameFetch"
 import { useDebounce } from "usehooks-ts"
+import { Close } from "../../assets/Close"
 
-export const PalletteMenu = () => {
 
-    const { state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor } = useContext(PalletteContext)
+export const PalletteMenu = ({ state, changeNumberOfColors, changeColor, changeHue, changeSaturation, changeLightness, newColor }) => {
+
     const debouncedColor = useDebounce(state.color, 250)
     const [colorName, setColorName] = useState("")
 
@@ -69,6 +69,11 @@ export const PalletteMenu = () => {
                         className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs cursor-pointer"
                     >
                         New Color
+                    </button>
+                    <button
+
+                    >
+                        <Close />
                     </button>
                 </div>
             </fieldset>

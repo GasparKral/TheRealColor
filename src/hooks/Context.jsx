@@ -1,49 +1,6 @@
-import { ReducerPallette } from "./ReducerPallette";
-import { useReducer, createContext, useState } from "react";
 import { generateRandomColor } from "../hooks/logic/generateRandomColor"
-import { useEffect } from "react";
-export const PalletteContext = createContext();
-
-export const PalletteProvider = ({ children, initialStates, palletteIndex, updatePallette }) => {
-
-    const [state, dispatch] = useReducer(ReducerPallette, initialStates)
-
-    const newColor = color => dispatch({ type: "GENERATE_COLOR", payload: { color } })
-    const changeColor = color => dispatch({ type: "CHANGE_COLOR", payload: { color } })
-    const setUpColor = color => dispatch({ type: "SET_UP_COLOR", payload: { color } })
-    const changeHue = hue => dispatch({ type: "CHANGE_HUE", payload: { hue } })
-    const changeSaturation = saturation => dispatch({ type: "CHANGE_SATURATION", payload: { saturation } })
-    const changeLightness = lightness => dispatch({ type: "CHANGE_LIGHTNESS", payload: { lightness } })
-    const changeNumberOfColors = numberOfColors => dispatch({ type: "CHANGE_NUMBER_OF_COLORS", payload: { numberOfColors } })
-
-    useEffect(() => {
-
-        if (state !== initialStates) {
-            const temporalState = JSON.parse(window.localStorage.getItem("palletteObject"));
-            localStorage.removeItem("palletteObject");
-            temporalState[palletteIndex] = state;
-            updatePallette(temporalState);
-            window.localStorage.setItem("palletteObject", JSON.stringify(temporalState))
-        }
-
-    }, [state, palletteIndex, initialStates, updatePallette]);
-
-    return (
-        <PalletteContext.Provider
-            value={{
-                initialStates,
-                state,
-                newColor,
-                changeColor,
-                setUpColor,
-                changeHue,
-                changeSaturation,
-                changeLightness,
-                changeNumberOfColors
-            }}
-        >{children}</PalletteContext.Provider>
-    )
-}
+import { createContext, useState } from "react"
+import { useLocalStorage } from "usehooks-ts";
 
 export const GeneralContext = createContext()
 
@@ -55,8 +12,9 @@ export const GeneralProvider = ({ children }) => {
     const [pallettes, setPallettes] = useState(window.localStorage.getItem("palletteObject") ? JSON.parse(window.localStorage.getItem("palletteObject")) : [initialPallette])
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
-    const eliminatePallette = (palletteIndex) => setPallettes(pallettes.filter((pallette, index) => index !== palletteIndex))
-    window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
+    const eliminatePallette = (index) => setPallettes([...pallettes.slice(0, index), ...pallettes.slice(index + 1)])
+
+    const [palletteObject, setPalletteObject] = useLocalStorage("palletteObject", pallettes)
 
     return (
         <GeneralContext.Provider
@@ -65,9 +23,11 @@ export const GeneralProvider = ({ children }) => {
                 setTask,
                 pallettes,
                 newPallette,
-                eliminatePallette,
                 setPallettes,
                 generateRandomColor,
+                eliminatePallette,
+                palletteObject,
+                setPalletteObject,
                 initialPallette
             }}
         >{children}</GeneralContext.Provider>
