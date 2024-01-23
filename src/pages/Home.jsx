@@ -25,7 +25,7 @@ const Home = () => {
             </button>
 
             {pallettes.map((pallette, index) => (
-                <PalletteBox key={index} pallette={pallette} index={index} updatePallettes={setPallettes} />
+                <PalletteBox key={index} pallette={pallette} index={index} />
             ))}
 
             {task.isTaskOpen && <Task>

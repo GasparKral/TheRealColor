@@ -54,7 +54,7 @@ export const PalletteMenu = () => {
                     className="flex justify-between items-centerrelative w-1/4"
                 >
                     <label>
-                        {colorName + ": "}
+                        {(colorName ? colorName : "Color") + ": "}
                         <input
                             name="color"
                             className="mb-2"

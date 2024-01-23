@@ -1,10 +1,11 @@
 import { ReducerPallette } from "./ReducerPallette";
 import { useReducer, createContext, useState } from "react";
 import { generateRandomColor } from "../hooks/logic/generateRandomColor"
-import { useEffect } from "react";
+import { useEffect } from "react"
+
 export const PalletteContext = createContext();
 
-export const PalletteProvider = ({ children, initialStates, palletteIndex, updatePallette }) => {
+export const PalletteProvider = ({ children, initialStates, palletteIndex }) => {
 
     const [state, dispatch] = useReducer(ReducerPallette, initialStates)
 
@@ -17,16 +18,13 @@ export const PalletteProvider = ({ children, initialStates, palletteIndex, updat
     const changeNumberOfColors = numberOfColors => dispatch({ type: "CHANGE_NUMBER_OF_COLORS", payload: { numberOfColors } })
 
     useEffect(() => {
-
         if (state !== initialStates) {
-            const temporalState = JSON.parse(window.localStorage.getItem("palletteObject"));
-            localStorage.removeItem("palletteObject");
-            temporalState[palletteIndex] = state;
-            updatePallette(temporalState);
-            window.localStorage.setItem("palletteObject", JSON.stringify(temporalState))
+            const temporalStorage = JSON.parse(window.localStorage.getItem("palletteObject"))
+            temporalStorage[palletteIndex] = state
+            window.localStorage.setItem("palletteObject", JSON.stringify(temporalStorage))
+            console.log("cambio", temporalStorage);
         }
-
-    }, [state, palletteIndex, initialStates, updatePallette]);
+    }, [state])
 
     return (
         <PalletteContext.Provider
@@ -56,7 +54,11 @@ export const GeneralProvider = ({ children }) => {
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
     const eliminatePallette = (palletteIndex) => setPallettes(pallettes.filter((pallette, index) => index !== palletteIndex))
-    window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
+
+    useEffect(() => {
+        window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
+        console.log("localStorage", JSON.parse(window.localStorage.getItem("palletteObject")))
+    }, [pallettes.length])
 
     return (
         <GeneralContext.Provider
@@ -70,6 +72,8 @@ export const GeneralProvider = ({ children }) => {
                 generateRandomColor,
                 initialPallette
             }}
-        >{children}</GeneralContext.Provider>
+        >
+            {children}
+        </GeneralContext.Provider>
     )
 }
