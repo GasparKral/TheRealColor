@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom"
-import { useState, useRef } from "react"
+import { useState, useRef, useContext } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useOnClickOutside } from 'usehooks-ts'
+import { GeneralContext } from "../hooks/Context"
 
 export const UserDisplay = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const closeRef = useRef(null)
+
+    const { setPallettes } = useContext(GeneralContext)
 
     useOnClickOutside(closeRef, () => setIsOpen(false))
 
@@ -69,6 +72,7 @@ export const UserDisplay = () => {
                         Save Pallette
                     </button>
                     <Link
+                        onClick={() => setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))}
                         to="/user"
                         className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors "
                     >

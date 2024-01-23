@@ -1,12 +1,12 @@
 import { PalletteBox } from "../Component/PalletteComponents/PalletteBox"
 import { Task } from "../Component/Toast"
 import { GeneralContext } from "../hooks/Context"
-import { useContext } from "react"
 import { AddNewPallette } from "../Component/PalletteComponents/AddNewPallette"
+import { useContext } from "react"
 
 const Home = () => {
 
-    const { task, pallettes, newPallette, setPallettes, generateRandomColor } = useContext(GeneralContext)
+    const { task, pallettes, newPallette, generateRandomColor } = useContext(GeneralContext)
 
     const handleClick = () => {
         window.localStorage.clear()
@@ -25,7 +25,12 @@ const Home = () => {
             </button>
 
             {pallettes.map((pallette, index) => (
-                <PalletteBox key={index} pallette={pallette} index={index} />
+                <PalletteBox
+                    key={index}
+                    pallette={pallette}
+                    index={index}
+                    initialStates={pallette}
+                />
             ))}
 
             {task.isTaskOpen && <Task>

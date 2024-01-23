@@ -1,13 +1,14 @@
 import { RangeDisplay } from "./RangeDisplay"
 import { useContext, useEffect, useState } from "react"
-import { PalletteContext } from "../../hooks/Context"
+import { GeneralContext } from "../../hooks/Context"
 import { motion } from "framer-motion"
 import { ColorNameFetch } from "../../hooks/services/ColorNameFetch"
 import { useDebounce } from "usehooks-ts"
+import { Close } from "../../assets/Close"
 
-export const PalletteMenu = () => {
+export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor }) => {
 
-    const { state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor } = useContext(PalletteContext)
+    const { eliminatePallettes } = useContext(GeneralContext)
     const debouncedColor = useDebounce(state.color, 250)
     const [colorName, setColorName] = useState("")
 
@@ -15,6 +16,13 @@ export const PalletteMenu = () => {
         ColorNameFetch(debouncedColor)
             .then(res => setColorName(res))
     }, [debouncedColor])
+
+    const eliminatePallettesFunction = () => {
+        const temporalStorage = JSON.parse(window.localStorage.getItem("palletteObject"))
+        temporalStorage.splice(palletteIndex, 1)
+        window.localStorage.setItem("palletteObject", JSON.stringify(temporalStorage))
+        eliminatePallettes(JSON.parse(window.localStorage.getItem("palletteObject")))
+    }
 
     return (
         <motion.form
@@ -69,6 +77,12 @@ export const PalletteMenu = () => {
                         className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs cursor-pointer"
                     >
                         New Color
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => eliminatePallettesFunction()}
+                    >
+                        <Close />
                     </button>
                 </div>
             </fieldset>
