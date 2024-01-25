@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { useState, useContext } from "react"
 import { GeneralContext } from "../../hooks/Context"
-import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
+import { clampValue } from "../../hooks/logic/clampValue"
 import { ClipBoardCopy } from "../../assets/ClipBoardCopy"
 import { Close } from "../../assets/Close"
 import { SetUp } from "../../assets/SetUp"
@@ -33,9 +33,9 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
         },
     }
 
-    let lightnessValue = checkMinMaxValue(Math.round(getColor.color[2] + lightness), 100, Math.round(getColor.color[2] + lightness))
-    let saturationValue = checkMinMaxValue(Math.round(getColor.color[1] + saturation), 100, Math.round(getColor.color[1] + saturation))
-    let hueValue = checkMinMaxValue(Math.round(getColor.color[0] + hue), 360, Math.round(getColor.color[0] + hue))
+    let lightnessValue = clampValue(Math.round(getColor.color[2] + lightness), 100, Math.round(getColor.color[2] + lightness))
+    let saturationValue = clampValue(Math.round(getColor.color[1] + saturation), 100, Math.round(getColor.color[1] + saturation))
+    let hueValue = clampValue(Math.round(getColor.color[0] + hue), 360, Math.round(getColor.color[0] + hue))
 
     const closeForm = (e) => {
         e.preventDefault()

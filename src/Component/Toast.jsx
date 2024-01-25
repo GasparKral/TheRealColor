@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-export const Task = ({ children }) => {
+export const Toast = ({ children }) => {
 
     return (
         <motion.aside

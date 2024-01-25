@@ -14,7 +14,7 @@ export const UserDisplay = () => {
 
     const closeRef = useRef(null)
 
-    const { setPallettes, setShowLogIn, setIsLoggedIn, isLoggedIn } = useContext(GeneralContext)
+    const { setPallettes, setShowLogIn, setIsLoggedIn, isLoggedIn, setSavedPallettes, savedPallettes, pallettes } = useContext(GeneralContext)
 
     useOnClickOutside(closeRef, () => setIsOpen(false))
 
@@ -35,6 +35,10 @@ export const UserDisplay = () => {
     const variants = {
         open: { opacity: 1, transition: { delay: 0.6, duration: 0.3 } },
         closed: { opacity: 0, transition: { duration: 0.3 } },
+    }
+
+    const savePallettes = () => {
+        isLoggedIn ? setSavedPallettes([...savedPallettes, pallettes]) : setShowLogIn(true)
     }
 
     return (
@@ -75,7 +79,7 @@ export const UserDisplay = () => {
                         }
                     }}
 
-                    className="flex flex-col p-2 fixed top-12 [right:68px] text-white bg-neutral-900 z-10 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
+                    className="flex flex-col p-2 fixed top-12 [right:68px] text-white bg-neutral-900 z-10 rounded-lg ring-2 ring-zinc-500 min-w-[150px] gap-2"
                 >
                     <motion.span
                         whileHover={() => { setMoreTypes(true) }}
@@ -127,7 +131,7 @@ export const UserDisplay = () => {
                     </motion.span>
                     <button
                         className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
-
+                        onClick={savePallettes}
                     >
                         Save Pallette
                     </button>
@@ -139,12 +143,14 @@ export const UserDisplay = () => {
                         User Info
                     </Link>
                     {isLoggedIn ?
-                        <button
-                            key={"logout"}
-                            onClick={logout}
-                            className="text-red-500 bg-red-500 bg-opacity-30 rounded-md p-0.5 hover:text-red-100 hover:bg-opacity-70 transition-colors"
-                        >
-                            Logout</button>
+                        <div className=" pt-2 border-t border-zinc-500 w-full">
+                            <button
+                                key={"logout"}
+                                onClick={logout}
+                                className="text-red-500 bg-red-500 bg-opacity-30 rounded-md p-0.5 hover:text-red-100 hover:bg-opacity-70 transition-colors w-full"
+                            >
+                                Logout</button>
+                        </div>
                         :
                         <div className="flex gap-2 pt-2 border-t border-zinc-500">
                             <button

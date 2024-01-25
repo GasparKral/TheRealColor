@@ -17,6 +17,8 @@ export const GeneralProvider = ({ children }) => {
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
     const eliminatePallettes = (newPallettes) => setPallettes(newPallettes)
 
+    const [savedPallettes, setSavedPallettes] = useState([])
+
     useEffect(() => {
         window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
     }, [pallettes.length])
@@ -35,7 +37,9 @@ export const GeneralProvider = ({ children }) => {
                 showLogIn,
                 setShowLogIn,
                 isLoggedIn,
-                setIsLoggedIn
+                setIsLoggedIn,
+                savedPallettes,
+                setSavedPallettes
             }}
         >
             {children}

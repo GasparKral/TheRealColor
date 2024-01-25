@@ -3,16 +3,15 @@ import { useContext, useRef } from "react"
 import { GeneralContext } from "../hooks/Context"
 import { useOnClickOutside } from 'usehooks-ts'
 
-
 export const LogIn = () => {
-
     const { setShowLogIn } = useContext(GeneralContext)
-    const closeRef = useRef(null)
-    useOnClickOutside(closeRef, () => setShowLogIn(false))
+    const formRef = useRef(null)
+
+    useOnClickOutside(formRef, () => setShowLogIn(false))
 
     return (
         <form
-            ref={closeRef}
+            ref={formRef}
             className="w-fit h-fit fixed content-center p-8 bg-zinc-900 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-xl z-20 grid grid-cols-2   gird-auto-rows-auto gap-4 ring-2 ring-neutral-50 pt-12 pl-4 pr-10"
         >
             <div
@@ -24,41 +23,40 @@ export const LogIn = () => {
                     <Close />
                 </button>
             </div>
-            <label htmlFor=""
+            <label htmlFor="name"
                 className="col-span-2 flex justify-between w-full"
             >
-                name:
+                Name:
                 <input
                     className="ml-2 rounded-sm"
                     type="text"
-                    min={3}
-                    pattern="[a-zA-Z]"
-                    placeholder="Juan, Ana, etc..."
+                    minLength={3}
+                    pattern="[a-zA-Z]+"
+                    placeholder="Enter name"
                 />
             </label>
-            <label htmlFor=""
+            <label htmlFor="email"
                 className="col-span-2 flex justify-between w-full"
             >
-                email:
+                Email:
                 <input
                     className="ml-2 rounded-sm"
                     type="email"
-                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
-                    placeholder="...@example.com"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                    placeholder="example@example.com"
                 />
             </label>
-            <label htmlFor=""
+            <label htmlFor="password"
                 className="col-span-2 flex justify-between w-full"
             >
-                password:
+                Password:
                 <input
                     className="ml-2 rounded-sm"
                     type="password"
                     minLength={8}
-                    pattern="[a-zA-Z0-9]"
+                    pattern="[a-zA-Z0-9]+"
                 />
             </label>
         </form>
     )
-
 }
