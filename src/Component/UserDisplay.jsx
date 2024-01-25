@@ -3,21 +3,38 @@ import { useState, useRef, useContext } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useOnClickOutside } from 'usehooks-ts'
 import { GeneralContext } from "../hooks/Context"
+import { exportPalletteAsTailwind } from "../hooks/logic/exportPalletteAsTailwinf"
+import { exportPalletteAsCSS } from "../hooks/logic/exportPalletteAsCSS"
+import { exportPalletteAsJSON } from "../hooks/logic/exportPalletteAsJSON"
 
 export const UserDisplay = () => {
 
     const [isOpen, setIsOpen] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [moreTipes, setMoreTypes] = useState(false)
+
     const closeRef = useRef(null)
 
-    const { setPallettes } = useContext(GeneralContext)
+    const { setPallettes, setShowLogIn, setIsLoggedIn, isLoggedIn } = useContext(GeneralContext)
 
     useOnClickOutside(closeRef, () => setIsOpen(false))
 
     const toggle = () => setIsOpen(!isOpen)
 
+    const login = () => {
+        if (window - localStorage.getItem("loggedIn")) {
+            setIsLoggedIn(true)
+        } else {
+            setShowLogIn(true)
+        }
+    }
+
     const logout = () => {
         setIsLoggedIn(false)
+    }
+
+    const variants = {
+        open: { opacity: 1, transition: { delay: 0.6, duration: 0.3 } },
+        closed: { opacity: 0, transition: { duration: 0.3 } },
     }
 
     return (
@@ -60,11 +77,54 @@ export const UserDisplay = () => {
 
                     className="flex flex-col p-2 fixed top-12 [right:68px] text-white bg-neutral-900 z-10 rounded-lg ring-2 ring-zinc-500 w-fit gap-2"
                 >
-                    <button
-                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                    <motion.span
+                        whileHover={() => { setMoreTypes(true) }}
+                        onHoverEnd={() => { setMoreTypes(false) }}
+                        className="border-none text-left hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
                     >
-                        Export pallette
-                    </button>
+                        Export Pallette
+                        <motion.ul
+                            initial={{ opacity: 0, width: 0, height: 0 }}
+                            animate={{
+                                height: moreTipes ? "90px" : 0,
+                                width: moreTipes ? 150 : 0,
+                                opacity: moreTipes ? 1 : 0,
+                                transition: { delay: 0.2, duration: 0.3, type: "tween", ease: "easeOut" }
+                            }}
+                            className="flex flex-col p-2 top-[10px] right-[150px] text-white w-fit gap-1 absolute bg-neutral-900 rounded-lg ring-2 ring-zinc-500"
+                        >
+                            <motion.li
+                                initial={{ opacity: 0 }}
+                                variants={variants}
+                                animate={moreTipes ? "open" : "closed"}
+                                className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                            >
+                                <button
+                                    onClick={exportPalletteAsJSON}
+                                >As JSON</button>
+                            </motion.li>
+                            <motion.li
+                                initial={{ opacity: 0 }}
+                                variants={variants}
+                                animate={moreTipes ? "open" : "closed"}
+                                className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                            >
+                                <button
+                                    onClick={exportPalletteAsTailwind}
+                                >Tailwind CSS</button>
+                            </motion.li>
+                            <motion.li
+                                initial={{ opacity: 0 }}
+                                variants={variants}
+                                animate={moreTipes ? "open" : "closed"}
+                                className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                            >
+                                <button
+                                    onClick={exportPalletteAsCSS}
+                                >As CSS</button>
+                            </motion.li>
+                        </motion.ul>
+                    </motion.span>
                     <button
                         className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
 
@@ -82,18 +142,18 @@ export const UserDisplay = () => {
                         <button
                             key={"logout"}
                             onClick={logout}
-                            className="text-red-500"
+                            className="text-red-500 bg-red-500 bg-opacity-30 rounded-md p-0.5 hover:text-red-100 hover:bg-opacity-70 transition-colors"
                         >
                             Logout</button>
                         :
                         <div className="flex gap-2 pt-2 border-t border-zinc-500">
-                            <Link
+                            <button
                                 className="text-green-500 bg-green-500 bg-opacity-30 rounded-md p-0.5 w-fit px-2 hover:text-green-100 hover:bg-opacity-70 transition-colors flex items-center"
                                 key={"login"}
-                                to="/login"
+                                onClick={login}
                             >
                                 Login
-                            </Link>
+                            </button>
                             <Link
                                 key={"register"}
                                 to={"/login"}

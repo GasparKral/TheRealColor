@@ -30,18 +30,16 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
             className="w-full h-fit flex flex-col items-center  align-middle justify-center gap-2"
         >
             <fieldset
-                className="flex row gap-3 w-full justify-around border-2 border-zinc-500 pt-4 pb-2 px-2 rounded-lg"
+                className="flex row gap-3 justify-between w-full border-2 border-zinc-500 pt-4 pb-2 px-2 rounded-lg"
             >
                 <div
-                    className="flex  items-center gap-3 relative w-1/2"
+                    className="flex  items-center gap-3 relative w-1/2 ml-10"
                 >
-                    <label
-                        htmlFor="numberOfColors"
-                    >1</label>
-                    <label
+                    1
+                    <span
                         htmlFor="numberOfColors"
                         className="absolute -top-3 left-20 select-none"
-                    >{state.numberOfColors}</label>
+                    >{state.numberOfColors}</span>
                     <input
                         name="numberOfColors"
                         defaultValue={5}
@@ -53,38 +51,40 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                         type="range"
                         className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     />
-                    <label
+                    <span
                         htmlFor="numberOfColors"
                         className="select-none"
-                    >10</label>
+                    >10</span>
                 </div>
                 <div
-                    className="flex justify-between items-centerrelative w-1/4"
+                    className="flex flex-row justify-evenly w-fit gap-20 ali"
                 >
-                    <label>
+                    <span
+                        className="text-[1.1rem]"
+                    >
                         {(colorName ? colorName : "Color") + ": "}
                         <input
                             name="color"
-                            className="mb-2"
                             type="color"
                             value={state.color}
                             onChange={e => changeColor(e.target.value)}
                         />
-                    </label>
+                    </span>
                     <button
                         type="button"
                         onClick={() => newColor()}
-                        className="border-2 border-zinc-500 px-2 rounded-lg mb-2 text-xs cursor-pointer"
+                        className="border-2 border-zinc-500 py-[2px] px-4 rounded-lg mb-1 text-xs cursor-pointer"
                     >
                         New Color
                     </button>
-                    <button
-                        type="button"
-                        onClick={() => eliminatePallettesFunction()}
-                    >
-                        <Close />
-                    </button>
                 </div>
+                <button
+                    type="button"
+                    onClick={() => eliminatePallettesFunction()}
+                    className="mb-[2px] mr-10"
+                >
+                    <Close />
+                </button>
             </fieldset>
             <fieldset
                 className="flex flex-row columns-3 gap-3 w-full justify-around border-2 border-zinc-500 p-2 rounded-lg"

@@ -25,7 +25,7 @@ input[type="color"] {
     -webkit-appearance: none;
     appearance: none;
     border: 1px solid #ccc;
-    height: 1rem;
+    height: 1.1rem;
     width: 3rem;
     border-radius: 6px;
 }
@@ -43,6 +43,10 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     margin: 0;
     width: 100%;
     height: 100%
+}
+
+input[type="number"]:focus {
+    outline: none;
 }
 
 ::-webkit-scrollbar {

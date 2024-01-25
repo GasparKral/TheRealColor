@@ -8,6 +8,9 @@ export const GeneralProvider = ({ children }) => {
 
     const [task, setTask] = useState({ isTaskOpen: false, task: '' })
 
+    const [showLogIn, setShowLogIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("loggedIn") ? JSON.parse(localStorage.getItem("loggedIn")) : false)
+
     const initialPallette = { color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
     const [pallettes, setPallettes] = useState(window.localStorage.getItem("palletteObject") ? JSON.parse(window.localStorage.getItem("palletteObject")) : [initialPallette])
 
@@ -28,7 +31,11 @@ export const GeneralProvider = ({ children }) => {
                 setPallettes,
                 eliminatePallettes,
                 generateRandomColor,
-                initialPallette
+                initialPallette,
+                showLogIn,
+                setShowLogIn,
+                isLoggedIn,
+                setIsLoggedIn
             }}
         >
             {children}

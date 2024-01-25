@@ -3,7 +3,6 @@ import { UserDisplay } from './Component/UserDisplay'
 
 import Home from './pages/Home'
 import UserInfo from './pages/UserInfo'
-import LogIn from './pages/LogIn'
 
 function App() {
 
@@ -13,7 +12,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/user" element={<UserInfo />} />
-                <Route path='/login' element={<LogIn />} />
             </Routes>
         </>
     )

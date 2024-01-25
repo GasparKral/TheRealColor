@@ -5,6 +5,7 @@ import { checkMinMaxValue } from "../../hooks/logic/checkMinMaxValue"
 import { ClipBoardCopy } from "../../assets/ClipBoardCopy"
 import { Close } from "../../assets/Close"
 import { SetUp } from "../../assets/SetUp"
+import { ShowColorValues } from "./ShowColorValues"
 
 import Color from "color"
 export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor }) => {
@@ -81,63 +82,33 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
                 <div
                     className="flex flex-col gap-1 text-end w-full h-[90%] rounded-lg"
                 >
-                    <label htmlFor="lightness"
+                    <span htmlFor="lightness"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms"
                         }}
                     >
                         Lightness:
-                        <input
-                            value={lightnessValue}
-                            readOnly
-                            name="saturation"
-                            type="number"
-                            style={{
-                                color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
-                                transition: "color easeIn 300ms"
-                            }}
-                            className="w-[25%] rounded-full  text-neutral-50 bg-transparent text-end"
-                        />
-                    </label>
-                    <label htmlFor="saturation"
+                        <ShowColorValues value={lightnessValue} bgColor={bgColor} />
+                    </span>
+                    <span htmlFor="saturation"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms"
                         }}
                     >
                         Saturation:
-                        <input
-                            value={saturationValue}
-                            readOnly
-                            name="lightness"
-                            type="number"
-                            style={{
-                                color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
-                                transition: "color easeIn 300ms"
-                            }}
-                            className="w-[25%] rounded-full  text-neutral-50 bg-transparent text-end"
-                        />
-                    </label>
-                    <label htmlFor="hue"
+                        <ShowColorValues value={saturationValue} bgColor={bgColor} />
+                    </span>
+                    <span htmlFor="hue"
                         style={{
                             color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
                             transition: "color easeIn 300ms"
                         }}
                     >
                         Hue:
-                        <input
-                            value={hueValue}
-                            readOnly
-                            name="hue"
-                            type="number"
-                            style={{
-                                color: Color(bgColor).darken(0.3).isDark() ? "#fafafa" : "#1c1c1c",
-                                transition: "color easeIn 300ms"
-                            }}
-                            className="w-[25%] rounded-full  text-neutral-50 bg-transparent text-end"
-                        />
-                    </label>
+                        <ShowColorValues value={hueValue} bgColor={bgColor} />
+                    </span>
                 </div>
                 <div
                     className="flex flex-row-reverse justify-between w-full rounded-lg"

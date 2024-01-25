@@ -3,10 +3,11 @@ import { Task } from "../Component/Toast"
 import { GeneralContext } from "../hooks/Context"
 import { AddNewPallette } from "../Component/PalletteComponents/AddNewPallette"
 import { useContext } from "react"
+import { LogIn } from "../Component/LogIn"
 
 const Home = () => {
 
-    const { task, pallettes, newPallette, generateRandomColor } = useContext(GeneralContext)
+    const { task, pallettes, newPallette, generateRandomColor, showLogIn } = useContext(GeneralContext)
 
     const handleClick = () => {
         window.localStorage.clear()
@@ -39,6 +40,7 @@ const Home = () => {
 
             {pallettes.length < 5 &&
                 <AddNewPallette updateNumber={() => newPallette({ color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 })} />}
+            {showLogIn && <LogIn />}
         </main>
     )
 }

@@ -5,14 +5,14 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
         <div
             className="flex items-center justify-center gap-2 w-1/3 px-2"
         >
-            <label
+            <span
                 htmlFor={name}
                 className="w-fit text-sm font-medium text-gray-900 dark:text-white select-none"
-            >{name}:</label>
-            <label
+            >{name}:</span>
+            <span
                 htmlFor={name}
                 className="select-none"
-            >{value}</label>
+            >{value}</span>
             <input
                 className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                 type="range"
@@ -25,9 +25,9 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
                 onChange={e => update(parseInt(e.target.value))}
             />
 
-            <label
+            <span
                 className="select-none"
-            >{max}</label>
+            >{max}</span>
         </div>
     )
 }
