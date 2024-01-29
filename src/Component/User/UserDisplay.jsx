@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import { useState, useRef, useContext } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useOnClickOutside } from 'usehooks-ts'
-import { GeneralContext } from "../hooks/Context"
-import { exportPalletteAsTailwind } from "../hooks/logic/exportPalletteAsTailwinf"
-import { exportPalletteAsCSS } from "../hooks/logic/exportPalletteAsCSS"
-import { exportPalletteAsJSON } from "../hooks/logic/exportPalletteAsJSON"
+import { GeneralContext } from "../../hooks/Context"
+import { exportPalletteAsTailwind } from "../../hooks/logic/exportPalletteAsTailwinf"
+import { exportPalletteAsCSS } from "../../hooks/logic/exportPalletteAsCSS"
+import { exportPalletteAsJSON } from "../../hooks/logic/exportPalletteAsJSON"
 
 export const UserDisplay = () => {
 
@@ -45,7 +45,7 @@ export const UserDisplay = () => {
 
         <AnimatePresence>
             <div
-                className="fixed top-3 right-5 w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-500 cursor-pointer"
+                className="fixed top-3 right-5 w-12 h-12 rounded-full overflow-hidden ring-2 ring-neutral-50 cursor-pointer"
                 onClick={toggle}
             >
                 <img
@@ -84,7 +84,7 @@ export const UserDisplay = () => {
                     <motion.span
                         whileHover={() => { setMoreTypes(true) }}
                         onHoverEnd={() => { setMoreTypes(false) }}
-                        className="border-none text-left hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                        className="border-none text-left hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-2 transition-colors"
                     >
                         Export Pallette
                         <motion.ul
@@ -130,7 +130,7 @@ export const UserDisplay = () => {
                         </motion.ul>
                     </motion.span>
                     <button
-                        className="border-none text-left  hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors"
+                        className="border-none text-left hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-2 transition-colors"
                         onClick={savePallettes}
                     >
                         Save Pallette
@@ -138,7 +138,7 @@ export const UserDisplay = () => {
                     <Link
                         onClick={() => setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))}
                         to="/user"
-                        className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-1 transition-colors "
+                        className=" hover:bg-zinc-500 hover:bg-opacity-30 rounded-md px-2 transition-colors "
                     >
                         User Info
                     </Link>
@@ -162,7 +162,7 @@ export const UserDisplay = () => {
                             </button>
                             <Link
                                 key={"register"}
-                                to={"/login"}
+                                to={"/register"}
                                 className="text-blue-500 bg-blue-500 bg-opacity-30 rounded-md w-fit px-2 hover:text-blue-100 hover:bg-opacity-70 transition-colors flex items-center"
                             >
                                 Register

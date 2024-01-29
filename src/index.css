@@ -52,3 +52,27 @@ input[type="number"]:focus {
 ::-webkit-scrollbar {
     display: none;
 }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    outline: none;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #1c1c1c;
+    padding-left: 4px;
+    transition: 0.3s all ease;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: #555;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    box-shadow: #1c1c1c 0 0 0 0.1em, #fafafa 0 0 0 0.2em;
+}

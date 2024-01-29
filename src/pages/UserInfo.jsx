@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { MenuListItem } from "../Component/MenuListItem";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion";
+import { GeneralContext } from "../hooks/Context";
+import { PleaseLog } from "../Component/User/PleaseLog";
 
 const UserInfo = () => {
+
     const svgRef = useRef();
     const textRef = useRef();
     const [selectedTab, setSelectedTab] = useState("User Info");
     const [target, userAnimation] = useAnimate();
+    const { isLoggedIn } = useContext(GeneralContext)
 
     useEffect(() => {
         userAnimation("li,a", {
@@ -20,7 +24,7 @@ const UserInfo = () => {
 
     const variants = {
         selectedTab: {
-            color: "#3b82f6",
+            color: "#0ea5e9",
             borderRadius: "8px",
             target: textRef.current
         },
@@ -49,7 +53,7 @@ const UserInfo = () => {
         <AnimatePresence>
             <main
                 key={"UserInfo"}
-                className="flex flex-row bg-gradient-to-l from-sky-400 to-blue-500 h-screen w-screen columns-2 justify-center items-start pr-40 py-40"
+                className="flex flex-row bg-gradient-to-r from-blue-500 via-sky-500 via-30% to-[#3FF8CD] to-86& h-screen w-screen columns-2 justify-center items-start pr-40 py-40 text-neutral-50"
                 style={{
                     gridTemplateColumns: "30% 1fr"
                 }}
@@ -78,11 +82,16 @@ const UserInfo = () => {
                     </motion.menu>
                 </motion.aside>
                 <motion.section
-                    className="w-2/3 h-full bg-neutral-50 bg-opacity-50 rounded-3xl p-4"
+                    className="w-2/3 h-full bg-gradient-to-b from-[#fafafa65] to-[#1c1c1c10] rounded-2xl p-4 ring-1 ring-neutral-50 shadow-soft"
                     initial={{ opacity: 0 }}
                     exit={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, transition: { duration: 0.7 } }}
                 >
+                    {isLoggedIn ?
+                        <h1>{selectedTab}</h1>
+                        :
+                        <PleaseLog />
+                    }
                 </motion.section>
             </main>
         </AnimatePresence>

@@ -3,10 +3,9 @@ import { PalletteBox } from "../Component/PalletteComponents/PalletteBox"
 import { Toast } from "../Component/Toast"
 import { GeneralContext } from "../hooks/Context"
 import { AddNewPallette } from "../Component/PalletteComponents/AddNewPallette"
-import { LogIn } from "../Component/LogIn"
 
 const Home = () => {
-    const { task, pallettes, newPallette, generateRandomColor, showLogIn } = useContext(GeneralContext)
+    const { task, pallettes, newPallette, generateRandomColor } = useContext(GeneralContext)
 
     const handleResetPallettes = () => {
         window.localStorage.clear()
@@ -36,7 +35,7 @@ const Home = () => {
             {pallettes.length < 5 &&
                 <AddNewPallette updateNumber={() => newPallette({ color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 })} />
             }
-            {showLogIn && <LogIn />}
+            
         </main>
     )
 }

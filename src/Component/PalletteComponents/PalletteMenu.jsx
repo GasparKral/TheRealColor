@@ -42,7 +42,7 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                     >{state.numberOfColors}</span>
                     <input
                         name="numberOfColors"
-                        defaultValue={5}
+                        defaultValue={state.numberOfColors}
                         min={1}
                         max={10}
                         step={1}

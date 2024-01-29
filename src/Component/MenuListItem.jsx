@@ -4,7 +4,7 @@ export const MenuListItem = ({ name, state, selectIt, variants, textRef, svgRef 
     return (
         <motion.li
             ref={textRef}
-            className="text-neutral-50 text-lg border-t-2 border-neutral-50 w-1/2 bg-opacity-20 cursor-pointer overflow-hidden relative pl-2 z-10"
+            className="text-neutral-50 text-lg border-t-[1px] border-neutral-50 w-1/2 bg-opacity-20 cursor-pointer overflow-hidden relative pl-2 z-10"
             whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.4 }
