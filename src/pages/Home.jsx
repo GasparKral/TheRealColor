@@ -9,6 +9,7 @@ const Home = () => {
 
     const handleResetPallettes = () => {
         window.localStorage.clear()
+        history.replaceState(null, null, "/")
         location.reload()
     }
 

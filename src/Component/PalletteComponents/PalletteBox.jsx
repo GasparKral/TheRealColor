@@ -7,6 +7,7 @@ import Color from "color"
 
 export const PalletteBox = ({ initialStates, index }) => {
 
+
     const [state, dispatch] = useReducer(ReducerPallette, initialStates)
 
     const newColor = color => dispatch({ type: "GENERATE_COLOR", payload: { color } })
@@ -22,6 +23,8 @@ export const PalletteBox = ({ initialStates, index }) => {
             const temporalStorage = JSON.parse(window.localStorage.getItem("palletteObject"))
             temporalStorage[index] = state
             window.localStorage.setItem("palletteObject", JSON.stringify(temporalStorage))
+            const hasedURL = `${btoa(JSON.stringify(temporalStorage))}`
+            history.replaceState(null, null, `:${hasedURL}`)
         }
     }, [state])
 
@@ -47,7 +50,10 @@ export const PalletteBox = ({ initialStates, index }) => {
                 }}
                 className="w-[80%] p-4 flex flex-col gap-3 rounded-lg"
                 style={{
-                    backgroundColor: Color(state.color).lighten(0.5).hex().toString() + "25",
+                    backgroundColor: Color(state.color).isDark() ?
+                        Color(state.color).lighten(0.3).hex().toString() + "30"
+                        :
+                        Color(state.color).hex().toString() + "20",
                 }}
             >
                 <PalletteMenu palletteIndex={index} state={state} changeHue={changeHue} changeSaturation={changeSaturation} changeLightness={changeLightness} changeNumberOfColors={changeNumberOfColors} newColor={newColor} changeColor={changeColor} />

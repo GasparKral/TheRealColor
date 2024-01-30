@@ -12,12 +12,22 @@ export const GeneralProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("loggedIn") ? JSON.parse(localStorage.getItem("loggedIn")) : false)
 
     const initialPallette = { color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
-    const [pallettes, setPallettes] = useState(window.localStorage.getItem("palletteObject") ? JSON.parse(window.localStorage.getItem("palletteObject")) : [initialPallette])
+    const [pallettes, setPallettes] = useState([initialPallette])
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
     const eliminatePallettes = (newPallettes) => setPallettes(newPallettes)
 
     const [savedPallettes, setSavedPallettes] = useState([])
+
+    useEffect(() => {
+        if (localStorage.getItem("palletteObject")) {
+            setPallettes(JSON.parse(localStorage.getItem("palletteObject")))
+        } else {
+            if (window.location.pathname !== "/") {
+                setPallettes(JSON.parse(atob(location.pathname.slice(2))))
+            }
+        }
+    }, [])
 
     useEffect(() => {
         window.localStorage.setItem("palletteObject", JSON.stringify(pallettes))
@@ -27,18 +37,18 @@ export const GeneralProvider = ({ children }) => {
         <GeneralContext.Provider
             value={{
                 task,
-                setTask,
+                initialPallette,
                 pallettes,
+                showLogIn,
+                isLoggedIn,
+                savedPallettes,
+                setTask,
                 newPallette,
                 setPallettes,
                 eliminatePallettes,
                 generateRandomColor,
-                initialPallette,
-                showLogIn,
                 setShowLogIn,
-                isLoggedIn,
                 setIsLoggedIn,
-                savedPallettes,
                 setSavedPallettes
             }}
         >

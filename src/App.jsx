@@ -16,7 +16,10 @@ function App() {
         <>
             <UserDisplay />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route
+                    path="/:pallette?"
+                    element={<Home />}
+                />
                 <Route path="/user" element={<UserInfo />} />
                 <Route path="/register" element={<Register />} />
             </Routes>

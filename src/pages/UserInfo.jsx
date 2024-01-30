@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion";
 import { GeneralContext } from "../hooks/Context";
 import { PleaseLog } from "../Component/User/PleaseLog";
+import { Payments } from "../Component/User/Payments";
 
 const UserInfo = () => {
 
@@ -88,14 +89,18 @@ const UserInfo = () => {
                     exit={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, transition: { duration: 0.7 } }}
                 >
-                    {isLoggedIn ?
-                        <h1>{selectedTab}</h1>
+                    {selectedTab === "Payments" ?
+                        <Payments />
                         :
-                        <PleaseLog />
+                        isLoggedIn ?
+                            <h1>{selectedTab}</h1>
+                            :
+                            <PleaseLog />
                     }
+
                 </motion.section>
             </main>
-        </AnimatePresence>
+        </AnimatePresence >
     );
 };
 
