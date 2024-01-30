@@ -13,7 +13,9 @@ const Home = () => {
     }
 
     return (
-        <main className="bg-zinc-900 min-h-screen w-screen flex flex-col gap-8 items-center justify-center text-white overflow-y-scroll py-16">
+        <main
+            className="min-h-screen bg-neutral-900 w-screen flex flex-col gap-8 items-center justify-center text-white overflow-y-scroll py-16"
+        >
             <button
                 className="fixed top-4 left-4 text-sm bg-neutral-500 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-xl p-2"
                 onClick={handleResetPallettes}
@@ -35,7 +37,7 @@ const Home = () => {
             {pallettes.length < 5 &&
                 <AddNewPallette updateNumber={() => newPallette({ color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 })} />
             }
-            
+
         </main>
     )
 }

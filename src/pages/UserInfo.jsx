@@ -58,6 +58,16 @@ const UserInfo = () => {
                     gridTemplateColumns: "30% 1fr"
                 }}
             >
+                <Link
+                    key={"Back"}
+                    to="/"
+                    className="text-white absolute top-4 left-4 text-center align-middle cursor-pointer "
+                >
+                    <svg
+                        fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                </Link>
                 <motion.aside
                     className="w-1/3 0 px-4 flex flex-col justify-center content-start items-end pr-12"
                 >
@@ -67,13 +77,6 @@ const UserInfo = () => {
                         animate={{ opacity: 1 }}
                         ref={target}
                     >
-                        <Link
-                            key={"Back"}
-                            to="/"
-                            className="text-white text-xl rounded-full px-4 mb-4 w-fit text-center align-middle cursor-pointer hover:bg-neutral-50 hover:text-blue-500 transition-colors ring-2 ring-neutral-50 duration-300"
-                        >
-                            Back
-                        </Link>
                         <MenuListItem key={"UserInfo"} name={"User Info"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
                         <MenuListItem key={"Pallettes"} name={"Pallettes"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
                         <MenuListItem key={"Payments"} name={"Payments"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />

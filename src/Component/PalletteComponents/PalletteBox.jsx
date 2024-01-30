@@ -3,6 +3,7 @@ import { PalletteMenu } from "./PalletteMenu"
 import { motion, AnimatePresence } from "framer-motion"
 import { ReducerPallette } from "../../hooks/ReducerPallette"
 import { useEffect, useReducer } from "react"
+import Color from "color"
 
 export const PalletteBox = ({ initialStates, index }) => {
 
@@ -34,8 +35,20 @@ export const PalletteBox = ({ initialStates, index }) => {
     return (
         <AnimatePresence>
             <motion.section
-                layout
-                className="w-[80%] h-fit p-4 flex flex-col justify-center items-center gap-3 align-middle rounded-lg relative"
+                animate={{
+                    height: state.numberOfColors > 5 ? "720px" : "432px",
+                    transition: {
+                        type: "spring",
+                        duration: 0.5,
+                        stiffness: 200,
+                        damping: 28,
+                        bounce: 0.9
+                    }
+                }}
+                className="w-[80%] p-4 flex flex-col gap-3 rounded-lg"
+                style={{
+                    backgroundColor: Color(state.color).lighten(0.5).hex().toString() + "25",
+                }}
             >
                 <PalletteMenu palletteIndex={index} state={state} changeHue={changeHue} changeSaturation={changeSaturation} changeLightness={changeLightness} changeNumberOfColors={changeNumberOfColors} newColor={newColor} changeColor={changeColor} />
                 <PalletteDisplay state={state} setUpColor={setUpColor} />

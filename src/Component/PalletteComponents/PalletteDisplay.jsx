@@ -23,21 +23,9 @@ export const PalletteDisplay = ({ state, setUpColor }) => {
         return colorsPallette
     }
 
-    const variants = {
-        small: {
-            height: "60%"
-        },
-        large: {
-            height: "100%"
-        }
-    }
-
     return (
         <motion.div
-            variants={variants}
-            animate={state.numberOfColors > 5 ? "large" : "small"}
-            layout
-            className="w-full h-3/5 grid grid-cols-5   gap-2 "
+            className="w-full h-[280px] grid grid-cols-5  gap-2 "
         >
             {colorsPalletteConstructor().map(color => color)}
         </motion.div>

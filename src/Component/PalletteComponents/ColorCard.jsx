@@ -65,7 +65,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
         <motion.article
             layout
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1, transition: { duration: 0.5 } }}
+            animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 0.2 } }}
             style={{
                 backgroundColor: bgColor
             }}

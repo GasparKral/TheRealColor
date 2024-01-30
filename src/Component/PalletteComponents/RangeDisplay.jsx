@@ -14,7 +14,7 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
                 className="select-none"
             >{value}</span>
             <input
-                className="w-fit h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                className="w-fit h-2 bg-neutral-400 rounded-lg appearance-none cursor-pointer"
                 type="range"
                 min={min}
                 max={max}
