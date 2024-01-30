@@ -1,7 +1,6 @@
 import { useState, useRef } from "react"
 import { Eye } from "../assets/Eye"
 import { EyeOf } from "../assets/EyeOf"
-import { Link } from "react-router-dom"
 
 const Register = () => {
 
@@ -25,14 +24,15 @@ const Register = () => {
             className="w-screen h-screen flex items-center justify-center bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-rose-500 to-indigo-700 text-neutral-50"
         >
 
-            <Link to="/"
+            <button
+                onClick={() => window.history.back()}
                 className="absolute top-4 left-4"
             >
                 <svg
                     fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
-            </Link>
+            </button>
 
             <form action="/"
                 className="w-fit h-fit p-8 bg-gradient-to-b from-[#fafafa50] to-[#1c1c1c30] backdrop-blur-lg z-20 rounded-lg shadow-soft

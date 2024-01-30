@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { MenuListItem } from "../Component/MenuListItem";
 import { useState, useRef, useEffect, useContext } from "react";
 import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion";
@@ -58,16 +57,15 @@ const UserInfo = () => {
                     gridTemplateColumns: "30% 1fr"
                 }}
             >
-                <Link
-                    key={"Back"}
-                    to="/"
-                    className="text-white absolute top-4 left-4 text-center align-middle cursor-pointer "
+                <button
+                    onClick={() => window.history.back()}
+                    className="absolute top-4 left-4"
                 >
                     <svg
                         fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
-                </Link>
+                </button>
                 <motion.aside
                     className="w-1/3 0 px-4 flex flex-col justify-center content-start items-end pr-12"
                 >
