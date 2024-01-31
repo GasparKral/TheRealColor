@@ -15,14 +15,14 @@ export const PleaseLog = () => {
                 className="flex gap-2 w"
             >
                 <button
-                    className="border-2 border-neutral-50 px-4 py-0 rounded-lg hover:bg-neutral-50 hover:text-sky-500 transition-colors duration-300 hover:shadow-soft"
+                    className="border-2 border-neutral-50 px-4 py-0 rounded-lg hover:bg-neutral-50 hover:text-sky-500 transition-all duration-300 hover:shadow-soft "
                     onClick={() => setShowLogIn(true)}
                 >
                     Log In
                 </button>
                 <Link
                     to="/register"
-                    className="border-2 border-neutral-50 px-4 py-0 rounded-lg hover:bg-neutral-50 hover:text-sky-500 transition-colors duration-300 hover:shadow-soft"
+                    className="border-2 border-neutral-50 px-4 py-0 rounded-lg hover:bg-neutral-50 hover:text-sky-500 transition-all duration-300 hover:shadow-soft"
                 >
                     Register
                 </Link>

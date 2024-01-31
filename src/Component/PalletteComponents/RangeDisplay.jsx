@@ -1,5 +1,5 @@
-
-export const RangeDisplay = ({ name, value, max, min, update }) => {
+import Color from "color"
+export const RangeDisplay = ({ name, value, max, min, update, state }) => {
 
     return (
         <div
@@ -15,6 +15,9 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
             >{value}</span>
             <input
                 className="w-fit h-2 bg-neutral-400 rounded-lg appearance-none cursor-pointer"
+                style={{
+                    background: Color(state.color).isDark() ? Color(state.color).lighten(0.5).hex().toString() : Color(state.color).hex().toString()
+                }}
                 type="range"
                 min={min}
                 max={max}

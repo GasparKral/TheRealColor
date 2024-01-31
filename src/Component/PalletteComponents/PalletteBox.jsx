@@ -54,6 +54,8 @@ export const PalletteBox = ({ initialStates, index }) => {
                         Color(state.color).lighten(0.3).hex().toString() + "30"
                         :
                         Color(state.color).hex().toString() + "20",
+                    boxShadow: Color(state.color).isDark() ? "0 0 10px 0 " + Color(state.color).lighten(0.3).hex().toString() : "0 0 10px 0 " + Color(state.color).hex().toString(),
+                    border: Color(state.color).isDark() ? "1px solid " + Color(state.color).lighten(0.3).hex().toString() : "1px solid " + Color(state.color).hex().toString()
                 }}
             >
                 <PalletteMenu

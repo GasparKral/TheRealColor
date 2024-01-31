@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ColorNameFetch } from "../../hooks/services/ColorNameFetch"
 import { useDebounce } from "usehooks-ts"
 import { Close } from "../../assets/Close"
+import Color from "color"
 
 export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation, changeLightness, changeNumberOfColors, newColor, changeColor }) => {
 
@@ -30,7 +31,11 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
             className="w-full h-fit flex flex-col items-center  align-middle justify-center gap-2"
         >
             <fieldset
-                className="flex row gap-3 justify-between w-full border-2 border-neutral-200 pt-4 pb-2 px-2 rounded-lg"
+                className="flex row gap-3 justify-between w-full pt-4 pb-2 px-2 rounded-lg"
+                style={{
+                    border: Color(state.color).isDark() ? "1px solid " + Color(state.color).lighten(0.3).hex().toString() : "1px solid " + Color(state.color).hex().toString(),
+                    boxShadow: Color(state.color).isDark() ? "inset 0 0 4px 0 " + Color(state.color).lighten(0.3).hex().toString() : "inset 0 0 4px 0 " + Color(state.color).hex().toString()
+                }}
             >
                 <div
                     className="flex  items-center gap-3 relative w-1/2 ml-10"
@@ -49,7 +54,10 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                         aria-label="number of colors range picker"
                         onChange={e => changeNumberOfColors(parseInt(e.target.value))}
                         type="range"
-                        className="w-fit h-2 bg-neutral-400 rounded-lg appearance-none cursor-pointer "
+                        className="w-fit h-2 rounded-lg appearance-none cursor-pointer "
+                        style={{
+                            background: Color(state.color).isDark() ? Color(state.color).lighten(0.5).hex().toString() : Color(state.color).hex().toString()
+                        }}
                     />
                     <span
                         htmlFor="numberOfColors"
@@ -73,7 +81,10 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                     <button
                         type="button"
                         onClick={() => newColor()}
-                        className="border-2 border-zinc-500 py-[2px] px-4 rounded-lg mb-1 text-xs cursor-pointer hover:border-neutral-300 transition-colors duration-200"
+                        style={{
+                            border: Color(state.color).isDark() ? "2px solid " + Color(state.color).lighten(0.3).hex().toString() : "2px solid " + Color(state.color).hex().toString()
+                        }}
+                        className="py-[2px] px-4 rounded-lg mb-1 text-xs cursor-pointer"
                     >
                         New Color
                     </button>
@@ -87,11 +98,15 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                 </button>
             </fieldset>
             <fieldset
-                className="flex flex-row columns-3 gap-3 w-full justify-around border-2 border-neutral-200 p-2 rounded-lg"
+                className="flex flex-row columns-3 gap-3 w-full justify-around p-2 rounded-lg"
+                style={{
+                    border: Color(state.color).isDark() ? "1px solid " + Color(state.color).lighten(0.3).hex().toString() : "1px solid " + Color(state.color).hex().toString(),
+                    boxShadow: Color(state.color).isDark() ? "inset 0 0 4px 0 " + Color(state.color).lighten(0.3).hex().toString() : "inset 0 0 4px 0 " + Color(state.color).hex().toString()
+                }}
             >
-                <RangeDisplay name={"Saturation "} max={10} min={-10} value={state.saturation} update={changeSaturation} />
-                <RangeDisplay name={"Lightness "} max={10} min={-10} value={state.lightness} update={changeLightness} />
-                <RangeDisplay name={"Hue "} max={18} min={-18} value={state.hue} update={changeHue} />
+                <RangeDisplay name={"Saturation "} max={10} min={-10} value={state.saturation} update={changeSaturation} state={state} />
+                <RangeDisplay name={"Lightness "} max={10} min={-10} value={state.lightness} update={changeLightness} state={state} />
+                <RangeDisplay name={"Hue "} max={18} min={-18} value={state.hue} update={changeHue} state={state} />
             </fieldset>
         </motion.form>
     )

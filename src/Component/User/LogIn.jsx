@@ -4,6 +4,7 @@ import { EyeOf } from "../../assets/EyeOf"
 import { useContext, useRef, useState } from "react"
 import { GeneralContext } from "../../hooks/Context"
 import { useOnClickOutside } from 'usehooks-ts'
+import { Link } from "react-router-dom"
 
 export const LogIn = () => {
     const { setShowLogIn } = useContext(GeneralContext)
@@ -74,12 +75,29 @@ export const LogIn = () => {
             </label>
             <button
                 onClick={togglePassword}
-                className="absolute right-10 bottom-[105px] z-20 text-zinc-800 hover:text-blue-500 bg-neutral-100 rounded-r-lg border-l-2 border-neutral-900 transition-colors duration-200"
+                className="absolute right-10 top-[143px] z-20 text-zinc-800 hover:text-blue-500 bg-neutral-100 rounded-r-lg border-l-2 border-neutral-900 transition-colors duration-200"
             >
                 {showPassword ? <EyeOf /> : <Eye />}
             </button>
+            <div
+                className="col-span-2 flex justify-between w-full"
+            >
+                <button
+                    onClick={() => setShowLogIn(false)}
+                    className="col-span-2 bg-transparent hover:underline rounded-md transition-colors easeIn duration-300"
+                >
+                    Forgot Password?
+                </button>
+                <Link
+                    onClick={() => setShowLogIn(false)}
+                    to={"/register"}
+                    className="col-span-2 bg-transparent hover:underline rounded-md  transition-colors easeIn duration-300"
+                >
+                    Register
+                </Link>
+            </div>
             <button
-                className="col-span-2 mt-8 bg-transparent hover:bg-neutral-50 hover:text-zinc-900 rounded-md ring-2 ring-neutral-50 transition-colors easeIn duration-300"
+                className="col-span-2 mt-4 bg-transparent hover:bg-neutral-50 hover:text-zinc-900 rounded-md ring-2 ring-neutral-50 transition-colors easeIn duration-300"
             >
                 Log In
             </button>
