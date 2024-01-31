@@ -5,12 +5,12 @@ import { GeneralContext } from "../hooks/Context"
 import { AddNewPallette } from "../Component/PalletteComponents/AddNewPallette"
 
 const Home = () => {
-    const { task, pallettes, newPallette, generateRandomColor } = useContext(GeneralContext)
+    const { task, pallettes, setPallettes, newPallette, generateRandomColor } = useContext(GeneralContext)
 
     const handleResetPallettes = () => {
         window.localStorage.clear()
         history.replaceState(null, null, "/")
-        location.reload()
+        setPallettes([])
     }
 
     return (
@@ -27,7 +27,6 @@ const Home = () => {
             {pallettes.map((pallette, index) => (
                 <PalletteBox
                     key={index}
-                    pallette={pallette}
                     index={index}
                     initialStates={pallette}
                 />

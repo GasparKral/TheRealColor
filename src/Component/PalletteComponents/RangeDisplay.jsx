@@ -18,7 +18,7 @@ export const RangeDisplay = ({ name, value, max, min, update }) => {
                 type="range"
                 min={min}
                 max={max}
-                defaultValue={value}
+                value={value}
                 name={name}
                 step={1}
                 aria-label="Default"

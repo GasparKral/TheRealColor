@@ -7,7 +7,6 @@ import Color from "color"
 
 export const PalletteBox = ({ initialStates, index }) => {
 
-
     const [state, dispatch] = useReducer(ReducerPallette, initialStates)
 
     const newColor = color => dispatch({ type: "GENERATE_COLOR", payload: { color } })
@@ -33,6 +32,7 @@ export const PalletteBox = ({ initialStates, index }) => {
         changeHue(initialStates.hue)
         changeSaturation(initialStates.saturation)
         changeLightness(initialStates.lightness)
+        changeNumberOfColors(initialStates.numberOfColors)
     }, [initialStates])
 
     return (
@@ -56,7 +56,16 @@ export const PalletteBox = ({ initialStates, index }) => {
                         Color(state.color).hex().toString() + "20",
                 }}
             >
-                <PalletteMenu palletteIndex={index} state={state} changeHue={changeHue} changeSaturation={changeSaturation} changeLightness={changeLightness} changeNumberOfColors={changeNumberOfColors} newColor={newColor} changeColor={changeColor} />
+                <PalletteMenu
+                    palletteIndex={index}
+                    state={state}
+                    changeHue={changeHue}
+                    changeSaturation={changeSaturation}
+                    changeLightness={changeLightness}
+                    changeNumberOfColors={changeNumberOfColors}
+                    newColor={newColor}
+                    changeColor={changeColor}
+                />
                 <PalletteDisplay state={state} setUpColor={setUpColor} />
             </motion.section>
         </AnimatePresence>

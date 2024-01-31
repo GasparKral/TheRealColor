@@ -20,12 +20,11 @@ export const GeneralProvider = ({ children }) => {
     const [savedPallettes, setSavedPallettes] = useState([])
 
     useEffect(() => {
-        if (localStorage.getItem("palletteObject")) {
-            setPallettes(JSON.parse(localStorage.getItem("palletteObject")))
+        if (window.location.pathname !== "/") {
+            console.log(atob(location.pathname.slice(2)));
+            setPallettes(JSON.parse(atob(location.pathname.slice(2))))
         } else {
-            if (window.location.pathname !== "/") {
-                setPallettes(JSON.parse(atob(location.pathname.slice(2))))
-            }
+            setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))
         }
     }, [])
 

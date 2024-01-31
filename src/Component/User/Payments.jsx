@@ -17,7 +17,7 @@ export const Payments = () => {
                 name="Light"
                 price="$2.50"
                 description="
-                save up to 6 color palettes
+                save up to 2 color palettes
                 "
             />
             <PaymentCard
