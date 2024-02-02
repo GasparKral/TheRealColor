@@ -4,6 +4,7 @@ import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion";
 import { GeneralContext } from "../hooks/Context";
 import { PleaseLog } from "../Component/User/PleaseLog";
 import { Payments } from "../Component/User/Payments";
+import { UserData } from "../Component/User/UserData";
 
 const UserInfo = () => {
 
@@ -11,7 +12,7 @@ const UserInfo = () => {
     const textRef = useRef();
     const [selectedTab, setSelectedTab] = useState("User Info");
     const [target, userAnimation] = useAnimate();
-    const { isLoggedIn } = useContext(GeneralContext)
+    const { isLoggedIn, user } = useContext(GeneralContext)
 
     useEffect(() => {
         userAnimation("li,a", {
@@ -93,7 +94,7 @@ const UserInfo = () => {
                         <Payments />
                         :
                         isLoggedIn ?
-                            <h1>{selectedTab}</h1>
+                            <UserData user={user === undefined ? "" : user} />
                             :
                             <PleaseLog />
                     }

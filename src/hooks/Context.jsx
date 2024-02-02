@@ -5,23 +5,35 @@ import { useEffect } from "react"
 export const GeneralContext = createContext()
 
 export const GeneralProvider = ({ children }) => {
+    const initialPallette = { color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
 
     const [task, setTask] = useState({ isTaskOpen: false, task: '' })
-
-    const [showLogIn, setShowLogIn] = useState(false)
+    const [showLogIn, setShowLogIn] = useState(undefined)
+    const [user, setUser] = useState(undefined)
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("loggedIn") ? JSON.parse(localStorage.getItem("loggedIn")) : false)
-
-    const initialPallette = { color: generateRandomColor(), hue: 9, saturation: 5, lightness: 5, numberOfColors: 5 }
     const [pallettes, setPallettes] = useState([initialPallette])
+    const [savedPallettes, setSavedPallettes] = useState([])
 
     const newPallette = (pallette) => setPallettes([...pallettes, pallette])
     const eliminatePallettes = (newPallettes) => setPallettes(newPallettes)
 
-    const [savedPallettes, setSavedPallettes] = useState([])
+    useEffect(() => {
+
+        if (isLoggedIn) {
+            fetch(`http://localhost:3000/getUser${localStorage.getItem("user").replaceAll(`"`, "")}`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            })
+                .then((res) => { const data = res.json(); return data })
+                .then((data) => {
+                    setUser(data)
+                })
+        }
+
+    }, [])
 
     useEffect(() => {
-        if (window.location.pathname !== "/") {
-            console.log(atob(location.pathname.slice(2)));
+        if (location.pathname.slice(2)) {
             setPallettes(JSON.parse(atob(location.pathname.slice(2))))
         } else {
             setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))
@@ -41,6 +53,8 @@ export const GeneralProvider = ({ children }) => {
                 showLogIn,
                 isLoggedIn,
                 savedPallettes,
+                user,
+                setUser,
                 setTask,
                 newPallette,
                 setPallettes,

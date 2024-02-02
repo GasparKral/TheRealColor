@@ -29,7 +29,7 @@ export const UserDisplay = () => {
     }
 
     const logout = () => {
-        setIsLoggedIn(false)
+        setIsLoggedIn(undefined)
     }
 
     const variants = {

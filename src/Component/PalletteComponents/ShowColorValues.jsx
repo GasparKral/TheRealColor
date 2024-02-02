@@ -1,10 +1,11 @@
 import Color from "color"
-export const ShowColorValues = ({ value, bgColor }) => {
+export const ShowColorValues = ({ value, bgColor, name }) => {
 
     return (
         <input
             value={value}
             readOnly
+            aria-label={name}
             name="saturation"
             type="number"
             style={{

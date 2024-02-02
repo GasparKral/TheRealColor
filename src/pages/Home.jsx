@@ -18,7 +18,7 @@ const Home = () => {
             className="min-h-screen bg-neutral-900 w-screen flex flex-col gap-8 items-center justify-center text-white overflow-y-scroll py-16"
         >
             <button
-                className="fixed top-4 left-4 text-sm bg-neutral-500 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-xl p-2"
+                className="fixed top-4 left-4 text-sm bg-neutral-500 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-xl p-2 px-4"
                 onClick={handleResetPallettes}
             >
                 Reset Pallettes

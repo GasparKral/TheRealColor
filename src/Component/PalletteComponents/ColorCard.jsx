@@ -89,7 +89,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
                         }}
                     >
                         Lightness:
-                        <ShowColorValues value={lightnessValue} bgColor={bgColor} />
+                        <ShowColorValues value={lightnessValue} bgColor={bgColor} name={"lightness"} />
                     </span>
                     <span htmlFor="saturation"
                         style={{
@@ -98,7 +98,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
                         }}
                     >
                         Saturation:
-                        <ShowColorValues value={saturationValue} bgColor={bgColor} />
+                        <ShowColorValues value={saturationValue} bgColor={bgColor} name={"saturation"} />
                     </span>
                     <span htmlFor="hue"
                         style={{
@@ -107,7 +107,7 @@ export const ColorCard = ({ hue, saturation, lightness, baseColor, setUpColor })
                         }}
                     >
                         Hue:
-                        <ShowColorValues value={hueValue} bgColor={bgColor} />
+                        <ShowColorValues value={hueValue} bgColor={bgColor} name={"hue"} />
                     </span>
                 </div>
                 <div

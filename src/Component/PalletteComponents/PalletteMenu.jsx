@@ -74,6 +74,7 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                         <input
                             name="color"
                             type="color"
+                            aria-label="color picker"
                             value={state.color}
                             onChange={e => changeColor(e.target.value)}
                         />
@@ -91,6 +92,7 @@ export const PalletteMenu = ({ palletteIndex, state, changeHue, changeSaturation
                 </div>
                 <button
                     type="button"
+                    aria-label="eliminate pallette"
                     onClick={() => eliminatePallettesFunction()}
                     className="mb-[2px] mr-10"
                 >
