@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { motion, useAnimate, stagger, AnimatePresence } from "framer-motion";
 import { GeneralContext } from "../hooks/Context";
 import { PleaseLog } from "../Component/User/PleaseLog";
-import { Payments } from "../Component/User/Payments";
+import { Pricing } from "../Component/User/Pricing";
 import { UserData } from "../Component/User/UserData";
 
 const UserInfo = () => {
@@ -50,6 +50,21 @@ const UserInfo = () => {
         setSelectedTab(tab);
     };
 
+    const showTab = (tab) => {
+        switch (tab) {
+            case "User Info":
+                return <UserData user={user === undefined ? "" : user} />
+            case "Pallettes":
+                return <h1>Pallettes</h1>
+            case "Privacy":
+                return <h1>Privacy</h1>
+            case "Settings":
+                return <h1>Settings</h1>
+        }
+    }
+
+    const tabs = ["User Info", "Pallettes", "Pricing", "Privacy", "Settings"];
+
     return (
         <AnimatePresence>
             <main
@@ -77,26 +92,26 @@ const UserInfo = () => {
                         animate={{ opacity: 1 }}
                         ref={target}
                     >
-                        <MenuListItem key={"UserInfo"} name={"User Info"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
-                        <MenuListItem key={"Pallettes"} name={"Pallettes"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
-                        <MenuListItem key={"Payments"} name={"Payments"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
-                        <MenuListItem key={"Privacy"} name={"Privacy"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
-                        <MenuListItem key={"Account"} name={"Account"} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
+                        {tabs.map((tab) => (
+                            <MenuListItem key={tab} name={tab} state={selectedTab} selectIt={selectTab} variants={variants} svgRef={svgRef} textRef={textRef} />
+                        ))}
                     </motion.menu>
                 </motion.aside>
                 <motion.section
-                    className="w-2/3 h-full bg-gradient-to-b from-[#fafafa65] to-[#1c1c1c10] rounded-2xl p-4 ring-1 ring-neutral-50 shadow-soft"
+                    className="w-2/3 h-full min-h-700px bg-gradient-to-b from-[#fafafa65] to-[#1c1c1c10] rounded-2xl p-4 ring-1 ring-neutral-50 shadow-soft"
                     initial={{ opacity: 0 }}
                     exit={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, transition: { duration: 0.7 } }}
                 >
-                    {selectedTab === "Payments" ?
-                        <Payments />
-                        :
-                        isLoggedIn ?
-                            <UserData user={user === undefined ? "" : user} />
+
+                    {
+                        selectedTab === "Pricing" ?
+                            <Pricing />
                             :
-                            <PleaseLog />
+                            isLoggedIn ?
+                                showTab(selectedTab)
+                                :
+                                <PleaseLog />
                     }
 
                 </motion.section>

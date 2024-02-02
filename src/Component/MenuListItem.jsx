@@ -24,7 +24,7 @@ export const MenuListItem = ({ name, state, selectIt, variants, textRef, svgRef 
             >
                 <circle cx="10" cy="10" r="9" stroke="#fafafa" strokeWidth="2" fill="#fafafa"></circle>
             </motion.svg>
-            {name}
+            <span className="select-none">{name}</span>
         </motion.li>
     )
 

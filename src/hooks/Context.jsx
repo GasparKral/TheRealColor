@@ -10,7 +10,7 @@ export const GeneralProvider = ({ children }) => {
     const [task, setTask] = useState({ isTaskOpen: false, task: '' })
     const [showLogIn, setShowLogIn] = useState(undefined)
     const [user, setUser] = useState(undefined)
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("loggedIn") ? JSON.parse(localStorage.getItem("loggedIn")) : false)
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("loggedIn") ? JSON.parse(localStorage.getItem("loggedIn")) : undefined)
     const [pallettes, setPallettes] = useState([initialPallette])
     const [savedPallettes, setSavedPallettes] = useState([])
 
@@ -33,11 +33,14 @@ export const GeneralProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        if (location.pathname.slice(2)) {
-            setPallettes(JSON.parse(atob(location.pathname.slice(2))))
-        } else {
-            setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))
+        if (location.pathname === "/") {
+            if (location.pathname.slice(2)) {
+                setPallettes(JSON.parse(atob(location.pathname.slice(1))))
+            } else {
+                setPallettes(JSON.parse(window.localStorage.getItem("palletteObject")))
+            }
         }
+
     }, [])
 
     useEffect(() => {

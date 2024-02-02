@@ -116,10 +116,10 @@ export const LogIn = () => {
             </label>
             <button
                 onClick={togglePassword}
-                className="absolute right-11 top-[143px] z-20 text-zinc-800 hover:text-blue-500 bg-neutral-100 rounded-r-lg border-l-2 border-neutral-900 transition-colors duration-200"
+                className="absolute right-10 top-[143px] z-20 text-zinc-800 hover:text-blue-500 bg-neutral-100 rounded-r-lg border-l-2 px-1 border-neutral-900 transition-colors duration-200"
                 style={{
-                    borderColor: isLoggedIn === false ? "#f43f5e" : "white",
-                    color: isLoggedIn === false ? "#f43f5e" : "#1c1c1c",
+                    borderColor: isLoggedIn === false ? "#f43f5e" : "#3b82f6",
+                    color: isLoggedIn === false ? "#f43f5e" : "#3b82f6",
                     backgroundColor: isLoggedIn === false ? "#ffcccc" : "white",
                 }}
             >
@@ -137,7 +137,7 @@ export const LogIn = () => {
                 <Link
                     onClick={() => setShowLogIn(false)}
                     to={"/register"}
-                    className="col-span-2 bg-transparent hover:underline rounded-md  transition-colors easeIn duration-300"
+                    className="col-span-2 bg-transparent hover:underline rounded-md transition-colors easeIn duration-300"
                 >
                     Register
                 </Link>

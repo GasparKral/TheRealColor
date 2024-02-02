@@ -30,6 +30,7 @@ export const UserDisplay = () => {
 
     const logout = () => {
         setIsLoggedIn(undefined)
+        localStorage.removeItem("loggedIn")
     }
 
     const variants = {

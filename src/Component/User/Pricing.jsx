@@ -1,5 +1,5 @@
 import { PaymentCard } from "../PaymentCard"
-export const Payments = () => {
+export const Pricing = () => {
 
     return (
         <div
